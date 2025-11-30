@@ -18,9 +18,14 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Mikiyas Zenebe Portfolio",
   description: "Welcome to Mikiyas Zenebe's professional portfolio website. Explore my projects, skills, and experience in software development and technology. Discover how I can contribute to your next big idea.  Let's build something amazing together!",
+  icons: {
+    icon: "/unnamed (1).jpg",
+    shortcut: "/unnamed (1).jpg",
+    apple: "/unnamed (1).jpg",
+  },
 };
 export const icons = {
-  icon: "/images (1).png",
+  icon: "/unnamed (1).jpg",
 };
 export default function RootLayout({
   children,
