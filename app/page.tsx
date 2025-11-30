@@ -273,7 +273,7 @@ alt="img"
 <p className='m-9 text-6xl' id="certifications">CERTIFICATIONS</p>
 <div className='flejpg'>
   <Image 
-src='/group.png'
+src='/Group.png'
 width={550}
 height={550}
 alt="img"
