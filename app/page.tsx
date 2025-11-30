@@ -38,7 +38,7 @@ export default function Home() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="flex min-h-screen flex-col items-center justify-between p-4">
       <div className='bg'></div>
       {/* <App/> */}
       <Header/>
@@ -50,10 +50,10 @@ export default function Home() {
       className="rounded-full w-45"
       />
       {/* <Email/> */}
-      <h1 className="text-[80px]">Mikiyas Zenebe Bekele</h1>
+      <h1 className="lg:text-[80px] md:text-[60px] text-[40px]">Mikiyas Zenebe Bekele</h1>
       <div className='fixed top-5 right-5 z-9'><ModeToggle/></div>
       <p className='m-3'>Self-taught AI Engineer and Python Devloper | Machine Learning </p>
-      <div className="mt-3 flex items-center gap-4 ">
+      <div className="mt-3 lg:flex items-center gap-4 ">
       <a href="tel:+251995641212" className='bg-gray flex align-center p-2 rounded-lg gap-2'>
       <Phone/>
       +251995641212
@@ -82,15 +82,15 @@ export default function Home() {
       </p>
 
       <p className='m-9 text-6xl' id="about">ABOUT</p>
-      <p className='w-[80%] text-[15px]'>Hi, I’m Miki, an IT student and a self-taught AI enthusiast who loves building things with code. I’m currently studying Information Technology at Arsi University, and in my free time, I teach myself Machine Learning, Deep Learning, and Computer Vision through online courses, documentation, and hands-on projects.
+      <p className='w-[100%] md:w-[100%] lg:w-[80%] text-[15px]'>Hi, I’m Miki, an IT student and a self-taught AI enthusiast who loves building things with code. I’m currently studying Information Technology at Arsi University, and in my free time, I teach myself Machine Learning, Deep Learning, and Computer Vision through online courses, documentation, and hands-on projects.
 
-I enjoy experimenting with AI from face recognition and emotion detection to building chatbots, recommendation systems, and language tools. Most of what I know comes from curiosity, consistency, and solving real problems through small personal projects.
+        I enjoy experimenting with AI from face recognition and emotion detection to building chatbots, recommendation systems, and language tools. Most of what I know comes from curiosity, consistency, and solving real problems through small personal projects.
 
-I believe learning by doing is the best way to grow, and I’m always working on something new: improving my skills, exploring new frameworks, and building projects that help people or make tech more accessible.
+        I believe learning by doing is the best way to grow, and I’m always working on something new: improving my skills, exploring new frameworks, and building projects that help people or make tech more accessible.
 
-My goal is to become a strong AI engineer who creates meaningful and practical solutions for real-world challenges.</p>
+        My goal is to become a strong AI engineer who creates meaningful and practical solutions for real-world challenges.</p>
       <p className='m-9 text-6xl' id="experience">EXPERIENCE</p>
-      <p className='w-[80%] text[15px]'>
+      <p className='w-[100%] md:w-[100%] lg:w-[80%] text[15px]'>
 AI Engineer & Machine Learning Developer
 
 Designed, trained, and deployed machine learning and deep learning models using scikit-learn and PyTorch for prediction, classification, and recommendation systems.
@@ -106,7 +106,7 @@ Worked on NLP, audio processing, and translation projects, leveraging Hugging Fa
 Contributed to multiple AI projects involving model design, dataset preparation, evaluation, and deployment.</p>
       <br />
       <p className='m-9 text-6xl' id="projects">PROJECTS</p>
-      <p className='w-[80%] text-[15px]'>
+      <p className='w-[100%] md:w-[100%] lg:w-[80%] text-[15px]'>
 <a className='text-2xl font-bold' href="">
   AILVision - AI-Powered CCTV & Face Recognition System
   </a>
@@ -270,16 +270,16 @@ alt="img"
 />
 
 </div>
-<p className='m-9 text-6xl' id="certifications">CERTIFICATIONS</p>
+<p className='m-9 text-3xl' id="certifications">CERTIFICATIONS</p>
 <div className='flejpg'>
   <Image 
 src='/Group.png'
-width={550}
-height={550}
+width={300}
+height={300}
 alt="img"
 />
 </div>
-<p className='m-9 text-6xl' id='contactus'>CONTACT US</p>
+<p className='m-9 text-3xl' id='contactus'>CONTACT US</p>
 <p className='w-[80%] text-[18px]'>I’m always excited to connect with fellow AI enthusiasts, collaborate on innovative projects, or discuss the latest trends in technology. Whether you have a question, an idea, or just want to say hello, feel free to reach out!</p>
     <Input className="w-[80%] mt-5 mb-6" placeholder="Your email address"        value={email}
         onChange={(e) => setEmail(e.target.value)}/>
