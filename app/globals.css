@@ -138,9 +138,11 @@
 p a {
   margin: 9px auto;
   line-height: 100px;
-  color: mintcream;
+  color: rgb(43, 114, 255);
+  /* font-size: 12px; */
 }
 p {
   line-height: 28px;
-}.flejpg {width: 90%;display: flex;overflow-x: scroll;height: 200px;gap: 15px;}
-.flejpg img {border-radius: 15px; width: 250px; height: auto; margin: 2px;}
+  font: 12px;
+}.flejpg {margin: auto;}
+/* .flejpg img {border-radius: 15px; width: 650px; height: auto; margin: 2px;} */
