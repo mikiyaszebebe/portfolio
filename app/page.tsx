@@ -44,14 +44,14 @@ export default function Home() {
       {/* <App/> */}
       <Header/>
       <Images 
-      src='/171597222 (2).png'
+      src='/jkbdvs.png'
       alt=""
       width={90}
-      height={90}
-      className="rounded-full w-45"
+      height={80}
+      className="rounded-full w-35"
       />
       {/* <Email/> */}
-      <h1 className="lg:text-[80px] md:text-[60px] text-[40px]">Mikiyas Zenebe Bekele</h1>
+      <h1 className="lg:text-[80px] md:text-[60px] text-[40px]">Mikiyas Zenebe</h1>
       <div className='fixed top-5 right-5 z-9'><ModeToggle/></div>
       <p className='m-3'>Self-taught AI Engineer and Python Devloper | Machine Learning </p>
       <div className="mt-3 lg:flex items-center gap-4 ">
@@ -109,7 +109,7 @@ Contributed to multiple AI projects involving model design, dataset preparation,
       <p className='m-9 text-6xl' id="projects">PROJECTS</p>
       <p className='w-[100%] md:w-[100%] lg:w-[80%] text-[15px]'>
 <a className='text-2xl font-bold' href="">
-  AILVision - AI-Powered CCTV & Face Recognition System
+  AILVision - Computer-vision Drive Classroom Intelligence System 
   </a>
   <br />
   AILVision is an AI-powered security system I am developing to modernize the existing CCTV infrastructure at Arsi University.
@@ -138,15 +138,37 @@ Tech Stack
 <br />
 Python, OpenCV, face_recognition, InsightFace
 Flask, FAISS, NumPy, Pandas
-<br /><a className='text-2xl font-bold' href="">
+<br />
+<p className="text-2xl font-bold">
+
+</p>
+<div className="flex gap-8 m-9">
+  
+<Image
+src="/605210024_1289445506557047_5503121573023226745_n.jpg"
+width={200}
+height={200}
+className="rounded-2xl"
+alt="Image"
+/>
+<Image
+src="/606305704_1289445049890426_8809910366120216634_n.jpg"
+width={200}
+height={200}
+className="rounded-2xl"
+alt="Image"
+/>
+</div>
+<br />
+<a className='text-2xl font-bold' href="">
 Berta Language Machine Translation</a>
 <br />
 <a href="https://en.wikipedia.org/wiki/Berta_languages">See on Wikipedia</a><br />
 This project focuses on building a low-resource machine translation system that translates between Berta (Bertha) and English. The goal is to contribute to the digitization and preservation of Ethiopian indigenous languages using modern Natural Language Processing (NLP) techniques.
   <br />
-<p className='font-bold text-xl'>
+{/* <p className='font-bold text-xl'> */}
 Data Collection & Preparation
-</p>
+{/* </p> */}
 <br />
 Collected, cleaned, and aligned 6,000+ parallel Berta–English sentence pairs.
 
@@ -290,6 +312,7 @@ alt="img"
       {loading ? "Sending..." : done ? "Sent!" : "Send Message"}
     </Button>
 {/* <p>A collection of certifications from Udemy, Kaggle, and Hugging Face covering Machine Learning, Python development, TensorFlow, NLP, LLMs, and AI engineering. These courses strengthened my practical skills in building real-world AI applications.</p> */}
+    <div className="bg-black[200] b-0">©2026 Mikiyas Zenebe</div>
     </main>
   );
 }
