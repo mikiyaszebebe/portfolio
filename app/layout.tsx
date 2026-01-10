@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-title: "Mikiyas Zenebe | Full-Stack Developer & AI Enthusiast Portfolio",
+title: "Mikiyas Zenebe",
 
 description: "Explore Mikiyas Zenebe's professional portfolio showcasing web apps, AI projects, and software development expertise. Specializing in Next.js, Python, and innovative tech solutions for your next project.",
 
