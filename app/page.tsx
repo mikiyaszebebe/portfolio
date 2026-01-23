@@ -112,6 +112,12 @@ Contributed to multiple AI projects involving model design, dataset preparation,
   AILVision - Computer-vision Drive Classroom Intelligence System 
   </a>
   <br />
+<Image 
+src="/Screenshot 2026-01-23 020926.png"
+alt="img"
+width={600}
+height={300}
+/>
   AILVision is an AI-powered security system I am developing to modernize the existing CCTV infrastructure at Arsi University.
 The system integrates real-time face recognition, intelligent monitoring, and automated alerts, transforming traditional cameras into a smart AI surveillance platform.
 <br />
@@ -160,63 +166,17 @@ alt="Image"
 />
 </div>
 <br />
-<a className='text-2xl font-bold' href="">
-❤️ Heart Disease Detection System
-</a>
-<br />
-
-An AI-powered machine learning project designed to predict the risk of heart disease using patient medical data.
-
-Key Features
-
-Predicts heart disease likelihood based on clinical attributes
-
-Includes data cleaning, feature selection, and model training
-
-Supports early diagnosis and healthcare decision-making
-<br />
-Technologies Used
-<br />
-Python
-
-Machine Learning (Scikit-learn)
-
-Pandas, NumPy
-
-Matplotlib / Seaborn
-<br />
-<a className='text-2xl font-bold' href="">
-🚗 Carbon Emission Car Prediction System
-</a>
-<br />
-
-A machine learning-based system that predicts carbon dioxide (CO₂) emissions of cars using vehicle specifications.
-
-<br />
-Key Features
-
-<br />
-Predicts carbon emissions based on engine size, fuel type, and mileage
-
-Uses regression models for accurate emission estimation
-
-Promotes environmental awareness and eco-friendly vehicle choices
-<br />
-Technologies Used
-<br />
-
-Python
-
-Machine Learning (Regression Models)
-
-Pandas, NumPy
-
-Data Visualization
 <br />
 <a className='text-2xl font-bold' href="">
 Berta Language Machine Translation</a>
 <br />
 <a href="https://en.wikipedia.org/wiki/Berta_languages">See on Wikipedia</a><br />
+<Image 
+src="/photo_2026-01-23_02-11-59.jpg"
+alt="img"
+width={600}
+height={300}
+/>
 This project focuses on building a low-resource machine translation system that translates between Berta (Bertha) and English. The goal is to contribute to the digitization and preservation of Ethiopian indigenous languages using modern Natural Language Processing (NLP) techniques.
   <br />
 {/* <p className='font-bold text-xl'> */}
@@ -268,6 +228,59 @@ Provide a starting point for future Ethiopian indigenous language NLP research
 Support tools like translation systems, chatbots, digital dictionaries, and educational apps
 
 Reduce the technological gap for underrepresented languages
+<br />
+<a className='text-2xl font-bold' href="">
+Heart Disease Detection System
+</a>
+<br />
+
+An AI-powered machine learning project designed to predict the risk of heart disease using patient medical data.
+
+Key Features
+
+Predicts heart disease likelihood based on clinical attributes
+
+Includes data cleaning, feature selection, and model training
+
+Supports early diagnosis and healthcare decision-making
+<br />
+Technologies Used
+<br />
+Python
+
+Machine Learning (Scikit-learn)
+
+Pandas, NumPy
+
+Matplotlib / Seaborn
+<br />
+<a className='text-2xl font-bold' href="">
+Carbon Emission Car Prediction System
+</a>
+<br />
+
+A machine learning-based system that predicts carbon dioxide (CO₂) emissions of cars using vehicle specifications.
+
+<br />
+Key Features
+
+<br />
+Predicts carbon emissions based on engine size, fuel type, and mileage
+
+Uses regression models for accurate emission estimation
+
+Promotes environmental awareness and eco-friendly vehicle choices
+<br />
+Technologies Used
+<br />
+
+Python
+
+Machine Learning (Regression Models)
+
+Pandas, NumPy
+
+Data Visualization
 <br />
 <a className='text-2xl font-bold' href="">
 AI Recommendation System
