@@ -53,7 +53,7 @@ export default function Home() {
       {/* <Email/> */}
       <h1 className="lg:text-[80px] md:text-[60px] text-[40px]">Mikiyas Zenebe</h1>
       <div className='fixed top-5 right-5 z-9'><ModeToggle/></div>
-      <p className='m-3'>Self-taught AI Engineer and Python Developer</p>
+      <p className='m-3'>AI Engineer and Python Developer</p>
       <div className="mt-3 lg:flex items-center gap-4 ">
       <a href="tel:+251995641212" className='bg-gray flex align-center p-2 rounded-lg gap-2'>
       <Phone/>
