@@ -44,7 +44,7 @@ export default function Home() {
       {/* <App/> */}
       <Header/>
       <Images 
-      src='/jkbdvs.png'
+      src='/-2147483648_-210083.jpg'
       alt=""
       width={90}
       height={80}
