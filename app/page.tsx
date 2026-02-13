@@ -108,7 +108,7 @@ Contributed to multiple AI projects involving model design, dataset preparation,
       <br />
       <p className='m-9 text-6xl' id="projects">PROJECTS</p>
       <p className='w-[100%] md:w-[100%] lg:w-[80%] text-[15px]'>
-<a className='text-2xl font-bold' href="">
+<a className='text-2xl font-bold' href="https://github.com/mikilezen/AILVision">
   AILVision - Computer-vision Drive Classroom Intelligence System 
   </a>
   <br />
