@@ -134,15 +134,3 @@
   backdrop-filter: blur(100px);
   
 }
-
-p a {
-  margin: 9px auto;
-  line-height: 100px;
-  color: rgb(43, 114, 255);
-  /* font-size: 12px; */
-}
-p {
-  line-height: 28px;
-  font: 12px;
-}.flejpg {margin: auto;}
-/* .flejpg img {border-radius: 15px; width: 650px; height: auto; margin: 2px;} */

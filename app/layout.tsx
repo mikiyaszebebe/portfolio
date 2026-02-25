@@ -16,13 +16,37 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-title: "Mikiyas Zenebe",
-
-description: "Explore Mikiyas Zenebe's professional portfolio showcasing web apps, AI projects, and software development expertise. Specializing in Next.js, Python, and innovative tech solutions for your next project.",
-
-icons: {
+  metadataBase: new URL("https://mikile.tech"),
+  title: "Mikiyas Zenebe | AI Engineer Portfolio",
+  description:
+    "Explore Mikiyas Zenebe's AI engineer portfolio featuring computer vision, NLP, and LLM projects, research, certifications, and competitive programming achievements.",
+  icons: {
     icon: "/mikiyas (1).jpg",
     shortcut: "/mikiyas (1).jpg",
+  },
+  openGraph: {
+    title: "Mikiyas Zenebe | AI Engineer Portfolio",
+    description:
+      "AI projects in computer vision, NLP, and LLM systems, plus research, certificates, and ICPC participation.",
+    url: "https://mikile.tech",
+    siteName: "Mikiyas Zenebe Portfolio",
+    locale: "en_US",
+    type: "website",
+    images: [
+      {
+        url: "/-2147483648_-210083.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Mikiyas Zenebe - AI Engineer Portfolio",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Mikiyas Zenebe | AI Engineer Portfolio",
+    description:
+      "AI projects, research, certifications, and ICPC participation by Mikiyas Zenebe.",
+    images: ["/-2147483648_-210083.jpg"],
   },
 };
 export const icons = {
