@@ -1,22 +1,83 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Header from "../components/ui/header";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "../components/ui/button";
-// import Button from "../components/ui/button";
-// import { Images } from "lucide-react";
-import Images from 'next/image';
-import { ArrowDownWideNarrow, Github, Linkedin, Mail, MessageCircle, Phone, } from "lucide-react";
+import { ArrowDownWideNarrow, Github, Linkedin, Mail, MessageCircle, Phone } from "lucide-react";
 import { ModeToggle } from "@/components/th";
 import { Input } from "@/components/ui/input";
-// import Telegramicon
-// import App from "../components/app";
+
+// Hook: fade-in animation when element enters viewport
+function useFadeIn() {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setVisible(true); },
+      { threshold: 0.15 }
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+  return { ref, visible };
+}
+
+// Hook: typing animation
+function useTypingEffect(words: string[], speed = 80, pause = 1800) {
+  const [wordIdx, setWordIdx] = useState(0);
+  const [charIdx, setCharIdx] = useState(0);
+  const [deleting, setDeleting] = useState(false);
+
+  useEffect(() => {
+    const current = words[wordIdx];
+    let timeout: ReturnType<typeof setTimeout>;
+
+    if (!deleting && charIdx < current.length) {
+      timeout = setTimeout(() => setCharIdx((c) => c + 1), speed);
+    } else if (!deleting && charIdx === current.length) {
+      timeout = setTimeout(() => setDeleting(true), pause);
+    } else if (deleting && charIdx > 0) {
+      timeout = setTimeout(() => setCharIdx((c) => c - 1), speed / 2);
+    } else {
+      timeout = setTimeout(() => {
+        setDeleting(false);
+        setWordIdx((w) => (w + 1) % words.length);
+      }, speed);
+    }
+
+    return () => clearTimeout(timeout);
+  }, [charIdx, deleting, wordIdx, words, speed, pause]);
+
+  return words[wordIdx].slice(0, charIdx);
+}
+
+// Fade-in section wrapper
+function FadeSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  const { ref, visible } = useFadeIn();
+  return (
+    <div
+      ref={ref}
+      className={`transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"} ${className}`}
+    >
+      {children}
+    </div>
+  );
+}
+
 export default function Home() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [done, setDone] = useState(false);
+
+  const typedRole = useTypingEffect([
+    "Self-taught AI Engineer",
+    "Python Developer",
+    "ML & Deep Learning Enthusiast",
+    "Computer Vision Builder",
+  ]);
+
   const sendMessage = async () => {
     setLoading(true);
     setDone(false);
@@ -38,348 +99,365 @@ export default function Home() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-4">
-      <div className='bg'></div>
-      <br />
-      {/* <App/> */}
-      <Header/>
-      <Images 
-      src='/-2147483648_-210083.jpg'
-      alt=""
-      width={90}
-      height={80}
-      className="rounded-full w-35"
-      />
-      {/* <Email/> */}
-      <h1 className="lg:text-[80px] md:text-[60px] text-[40px]">Mikiyas Zenebe</h1>
-      <div className='fixed top-5 right-5 z-9'><ModeToggle/></div>
-      <p className='m-3'>Self-taught AI Engineer and Python Developer</p>
-      <div className="mt-3 lg:flex items-center gap-4 ">
-      <a href="tel:+251995641212" className='bg-gray flex align-center p-2 rounded-lg gap-2'>
-      <Phone/>
-      +251995641212
-      </a>
-      {/* <a href=""> */}
-      <a href="mailto:mikilezen@gmail.com" className='bg-gray flex align-center p-2 rounded-lg gap-2'>
-      <Mail/>
-      mikilezen@gmail.com
-      </a>
-        </div>
-        <br />
-      <div className="flex flex-row gap-4">
-      <a href="https://www.linkedin.com/in/mikile">
-      <Linkedin/>
-      </a>
-      <a href="https://github.com/Mikilezen">
-      <Github/>
-      </a>
-      <a href="https://t.me/m_i_k_i_l_e">
-      <MessageCircle/>
-      </a>
+    <main className="flex min-h-screen flex-col items-center p-4">
+      <div className="bg"></div>
+      <Header />
+      <div className="fixed top-[18px] right-16 z-50 md:right-5">
+        <ModeToggle />
       </div>
-      <p className="mt-3 flex flex-col items-center text-center">
-      scroll down
-      <ArrowDownWideNarrow/>
-      </p>
 
-      <p className='m-9 text-6xl' id="about">ABOUT</p>
-      <p className='w-[100%] md:w-[100%] lg:w-[80%] text-[15px]'>Hi, I’m Miki, an IT student and a self-taught AI enthusiast who loves building things with code. I’m currently studying Information Technology at Arsi University, and in my free time, I teach myself Machine Learning, Deep Learning, and Computer Vision through online courses, documentation, and hands-on projects.
+      {/* Hero section */}
+      <div className="flex flex-col items-center mt-24 mb-4 text-center px-4">
+        <Image
+          src="/-2147483648_-210083.jpg"
+          alt="Mikiyas Zenebe"
+          width={110}
+          height={110}
+          className="rounded-full mb-4 ring-4 ring-primary/20"
+        />
+        <h1 className="text-[36px] sm:text-[56px] lg:text-[80px] font-bold leading-tight">
+          Mikiyas Zenebe
+        </h1>
+        <p className="mt-2 text-lg sm:text-xl text-muted-foreground min-h-[2rem]">
+          <span>{typedRole}</span>
+          <span className="animate-pulse">|</span>
+        </p>
 
-        I enjoy experimenting with AI from face recognition and emotion detection to building chatbots, recommendation systems, and language tools. Most of what I know comes from curiosity, consistency, and solving real problems through small personal projects.
+        {/* Contact links */}
+        <div className="mt-4 flex flex-col sm:flex-row items-center gap-3 flex-wrap justify-center">
+          <a
+            href="tel:+251995641212"
+            className="flex items-center gap-2 px-3 py-2 rounded-lg bg-secondary hover:bg-accent transition-colors"
+          >
+            <Phone size={16} />
+            <span className="text-sm">+251995641212</span>
+          </a>
+          <a
+            href="mailto:mikilezen@gmail.com"
+            className="flex items-center gap-2 px-3 py-2 rounded-lg bg-secondary hover:bg-accent transition-colors"
+          >
+            <Mail size={16} />
+            <span className="text-sm">mikilezen@gmail.com</span>
+          </a>
+        </div>
 
-        I believe learning by doing is the best way to grow, and I’m always working on something new: improving my skills, exploring new frameworks, and building projects that help people or make tech more accessible.
+        {/* Social links */}
+        <div className="flex flex-row gap-5 mt-4">
+          <a
+            href="https://www.linkedin.com/in/mikile"
+            className="hover:text-blue-500 transition-colors"
+            aria-label="LinkedIn"
+          >
+            <Linkedin size={22} />
+          </a>
+          <a
+            href="https://github.com/Mikilezen"
+            className="hover:text-gray-500 transition-colors"
+            aria-label="GitHub"
+          >
+            <Github size={22} />
+          </a>
+          <a
+            href="https://t.me/m_i_k_i_l_e"
+            className="hover:text-blue-400 transition-colors"
+            aria-label="Telegram"
+          >
+            <MessageCircle size={22} />
+          </a>
+        </div>
 
-        My goal is to become a strong AI engineer who creates meaningful and practical solutions for real-world challenges.</p>
-      <p className='m-9 text-6xl' id="experience">EXPERIENCE</p>
-      <p className='w-[100%] md:w-[100%] lg:w-[80%] text[15px]'>
-AI Engineer & Machine Learning Developer
+        <p className="mt-6 flex flex-col items-center text-muted-foreground text-sm">
+          scroll down
+          <ArrowDownWideNarrow className="mt-1 animate-bounce" />
+        </p>
+      </div>
 
-Designed, trained, and deployed machine learning and deep learning models using scikit-learn and PyTorch for prediction, classification, and recommendation systems.
+      {/* About */}
+      <FadeSection className="w-full flex flex-col items-center">
+        <p className="mt-8 mb-4 text-4xl sm:text-5xl lg:text-6xl font-semibold" id="about">
+          ABOUT
+        </p>
+        <p className="w-full sm:w-[90%] lg:w-[80%] text-[15px] leading-7 text-center px-4">
+          Hi, I&apos;m Miki, an IT student and a self-taught AI enthusiast who loves building things
+          with code. I&apos;m currently studying Information Technology at Arsi University, and in my
+          free time, I teach myself Machine Learning, Deep Learning, and Computer Vision through
+          online courses, documentation, and hands-on projects.
+          <br />
+          <br />
+          I enjoy experimenting with AI &mdash; from face recognition and emotion detection to
+          building chatbots, recommendation systems, and language tools. My goal is to become a
+          strong AI engineer who creates meaningful and practical solutions for real-world challenges.
+        </p>
+      </FadeSection>
 
-Built AI-driven recommendation engines and implemented large-scale data processing workflows using PySpark to improve performance and optimization.
+      {/* Experience */}
+      <FadeSection className="w-full flex flex-col items-center">
+        <p
+          className="mt-8 mb-4 text-4xl sm:text-5xl lg:text-6xl font-semibold"
+          id="experience"
+        >
+          EXPERIENCE
+        </p>
+        <div className="w-full sm:w-[90%] lg:w-[80%] text-[15px] leading-7 px-4 space-y-3">
+          <p className="font-semibold text-lg">AI Engineer &amp; Machine Learning Developer</p>
+          <p>
+            Designed, trained, and deployed machine learning and deep learning models using
+            scikit-learn and PyTorch for prediction, classification, and recommendation systems.
+          </p>
+          <p>
+            Built AI-driven recommendation engines and implemented large-scale data processing
+            workflows using PySpark to improve performance and optimization.
+          </p>
+          <p>
+            Developed intelligent LLM-powered applications with LangChain, integrating custom
+            pipelines, retrieval modules, and context-based reasoning for automation and chatbot
+            development.
+          </p>
+          <p>
+            Implemented computer vision systems using OpenCV and PyTorch, including face
+            recognition, emotion detection, and various image-analysis solutions.
+          </p>
+          <p>
+            Worked on NLP, audio processing, and translation projects, leveraging Hugging Face
+            Transformers to build and fine-tune models for text understanding, generation, and
+            multilingual applications.
+          </p>
+        </div>
+      </FadeSection>
 
-Developed intelligent LLM-powered applications with LangChain, integrating custom pipelines, retrieval modules, and context-based reasoning for automation and chatbot development.
+      {/* Projects */}
+      <FadeSection className="w-full flex flex-col items-center">
+        <p
+          className="mt-8 mb-4 text-4xl sm:text-5xl lg:text-6xl font-semibold"
+          id="projects"
+        >
+          PROJECTS
+        </p>
+        <div className="w-full sm:w-[90%] lg:w-[80%] text-[15px] leading-7 px-4 space-y-8">
+          {/* Project 1 */}
+          <div>
+            <a
+              className="text-xl sm:text-2xl font-bold hover:text-blue-500 transition-colors"
+              href="https://github.com/mikilezen/AILVision"
+            >
+              AILVision &mdash; Computer-vision Driven Classroom Intelligence System
+            </a>
+            <div className="mt-3 w-full overflow-hidden rounded-xl">
+              <Image
+                src="/Screenshot 2026-01-23 020926.png"
+                alt="AILVision screenshot"
+                width={600}
+                height={300}
+                className="w-full h-auto rounded-xl"
+              />
+            </div>
+            <p className="mt-2">
+              AILVision is an AI-powered security system integrating real-time face recognition,
+              intelligent monitoring, and automated alerts to modernize CCTV infrastructure at Arsi
+              University.
+            </p>
+            <p className="font-bold mt-2">Key Features</p>
+            <ul className="list-disc list-inside space-y-1 mt-1">
+              <li>
+                <strong>Real-Time Face Recognition</strong> &mdash; deep learning facial embeddings
+                with FAISS vector search.
+              </li>
+              <li>
+                <strong>Automated CCTV Analysis</strong> &mdash; converts raw footage into
+                actionable insights.
+              </li>
+              <li>
+                <strong>Live Monitoring Dashboard</strong> &mdash; detection logs and system
+                analytics.
+              </li>
+              <li>
+                <strong>Scalable Architecture</strong> &mdash; Python + Flask backend, supports
+                multiple cameras.
+              </li>
+            </ul>
+            <p className="font-bold mt-2">Tech Stack</p>
+            <p>Python, OpenCV, face_recognition, InsightFace, Flask, FAISS, NumPy, Pandas</p>
+            <div className="flex flex-wrap gap-4 mt-4">
+              <Image
+                src="/605210024_1289445506557047_5503121573023226745_n.jpg"
+                width={200}
+                height={200}
+                className="rounded-2xl w-full sm:w-auto"
+                alt="AILVision image 1"
+              />
+              <Image
+                src="/606305704_1289445049890426_8809910366120216634_n.jpg"
+                width={200}
+                height={200}
+                className="rounded-2xl w-full sm:w-auto"
+                alt="AILVision image 2"
+              />
+            </div>
+          </div>
 
-Implemented computer vision systems using OpenCV and PyTorch, including face recognition, emotion detection, and various image-analysis solutions.
+          {/* Project 2 */}
+          <div>
+            <a
+              className="text-xl sm:text-2xl font-bold hover:text-blue-500 transition-colors"
+              href=""
+            >
+              Berta Language Machine Translation
+            </a>
+            <span className="ml-2 text-sm text-muted-foreground">
+              (
+              <a
+                href="https://en.wikipedia.org/wiki/Berta_languages"
+                className="underline hover:text-blue-500"
+              >
+                Wikipedia
+              </a>
+              )
+            </span>
+            <div className="mt-3 w-full overflow-hidden rounded-xl">
+              <Image
+                src="/photo_2026-01-23_02-11-59.jpg"
+                alt="Berta Translation"
+                width={600}
+                height={300}
+                className="w-full h-auto rounded-xl"
+              />
+            </div>
+            <p className="mt-2">
+              A low-resource machine translation system for Berta–English. Collected 6,000+ parallel
+              sentence pairs and trained a Transformer-based Seq2Seq model using PyTorch and Hugging
+              Face Transformers.
+            </p>
+            <p className="font-bold mt-2">Deployment</p>
+            <p>
+              Open-source on Hugging Face:{" "}
+              <a
+                href="https://huggingface.co/Mikile/Bertha-translation-encoder"
+                className="text-blue-500 hover:underline break-all"
+              >
+                https://huggingface.co/Mikile/Bertha-translation-encoder
+              </a>
+            </p>
+          </div>
 
-Worked on NLP, audio processing, and translation projects, leveraging Hugging Face Transformers to build and fine-tune models for text understanding, generation, and multilingual applications.
+          {/* Projects 3–6: responsive card grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div className="p-4 rounded-xl border border-border hover:shadow-md transition-shadow">
+              <p className="font-bold text-lg">Heart Disease Detection System</p>
+              <p className="mt-1">
+                Predicts heart disease risk from patient medical data using ML classification models.
+              </p>
+              <p className="text-sm text-muted-foreground mt-2">
+                Python · Scikit-learn · Pandas · NumPy · Matplotlib
+              </p>
+            </div>
+            <div className="p-4 rounded-xl border border-border hover:shadow-md transition-shadow">
+              <p className="font-bold text-lg">Carbon Emission Car Prediction</p>
+              <p className="mt-1">
+                Predicts CO&#8322; emissions of cars using regression models and vehicle
+                specifications.
+              </p>
+              <p className="text-sm text-muted-foreground mt-2">
+                Python · Regression Models · Pandas · NumPy
+              </p>
+            </div>
+            <div className="p-4 rounded-xl border border-border hover:shadow-md transition-shadow">
+              <p className="font-bold text-lg">AI Recommendation System</p>
+              <p className="mt-1">
+                Content-based and collaborative filtering for personalized recommendations.
+              </p>
+              <p className="text-sm text-muted-foreground mt-2">
+                Python · Scikit-learn · Collaborative Filtering
+              </p>
+            </div>
+            <div className="p-4 rounded-xl border border-border hover:shadow-md transition-shadow">
+              <p className="font-bold text-lg">LangChain-Based Chat Assistant</p>
+              <p className="mt-1">
+                Intelligent chatbot with custom knowledge-retrieval pipelines for context-aware
+                responses.
+              </p>
+              <p className="text-sm text-muted-foreground mt-2">Python · LangChain · LLMs · RAG</p>
+            </div>
+          </div>
+        </div>
+      </FadeSection>
 
-Contributed to multiple AI projects involving model design, dataset preparation, evaluation, and deployment.</p>
-      <br />
-      <p className='m-9 text-6xl' id="projects">PROJECTS</p>
-      <p className='w-[100%] md:w-[100%] lg:w-[80%] text-[15px]'>
-<a className='text-2xl font-bold' href="https://github.com/mikilezen/AILVision">
-  AILVision - Computer-vision Drive Classroom Intelligence System 
-  </a>
-  <br />
-<Image 
-src="/Screenshot 2026-01-23 020926.png"
-alt="img"
-width={600}
-height={300}
-/>
-  AILVision is an AI-powered security system I am developing to modernize the existing CCTV infrastructure at Arsi University.
-The system integrates real-time face recognition, intelligent monitoring, and automated alerts, transforming traditional cameras into a smart AI surveillance platform.
-<br />
-<b>Key Features</b>
-<br />
-Real-Time Face Recognition
-Uses deep learning–based facial embeddings and FAISS vector search to identify people quickly and accurately.
+      {/* Skills */}
+      <FadeSection className="w-full flex flex-col items-center">
+        <p className="mt-8 mb-4 text-4xl sm:text-5xl lg:text-6xl font-semibold">SKILLS</p>
+        <div className="flex flex-wrap justify-center gap-6 mb-10 px-4">
+          {[
+            { src: "https://img.icons8.com/color/48/python--v1.png", label: "Python" },
+            { src: "https://img.icons8.com/fluency/48/pytorch.png", label: "PyTorch" },
+            {
+              src: "https://img.icons8.com/fluency/48/hugging-face_app.png",
+              label: "Hugging Face",
+            },
+            { src: "https://img.icons8.com/color/48/nextjs.png", label: "Next.js" },
+            { src: "/images (1).png", label: "OpenCV" },
+            { src: "https://img.icons8.com/color/48/pandas.png", label: "Pandas" },
+            { src: "/images.webp", label: "Scikit-learn" },
+            { src: "/images (1).webp", label: "TensorFlow" },
+            { src: "https://img.icons8.com/fluency/48/r-project.png", label: "R" },
+          ].map(({ src, label }) => (
+            <div key={label} className="flex flex-col items-center gap-1 group">
+              <Image
+                src={src}
+                width={48}
+                height={48}
+                alt={label}
+                className="transition-transform group-hover:scale-110"
+              />
+              <span className="text-xs text-muted-foreground">{label}</span>
+            </div>
+          ))}
+        </div>
+      </FadeSection>
 
-Automated CCTV Analysis
-Converts raw CCTV footage into meaningful insights using computer vision models.
+      {/* Certifications */}
+      <FadeSection className="w-full flex flex-col items-center">
+        <p className="mt-8 mb-4 text-2xl sm:text-3xl font-semibold" id="certifications">
+          CERTIFICATIONS
+        </p>
+        <div className="w-full max-w-sm px-4">
+          <Image
+            src="/Group.png"
+            width={300}
+            height={300}
+            alt="Certifications"
+            className="w-full h-auto rounded-xl"
+          />
+        </div>
+      </FadeSection>
 
-Attendance & Access Tracking
-Can be extended to track student/employee attendance, restricted-area access, and visitor logs.
-<br />
-Live Monitoring Dashboard
-Displays recognized individuals, unknown visitors, detection logs, and system analytics.
-<br />
-Scalable Architecture
-Designed to work across multiple CCTV cameras with a Python + Flask backend and optional cloud deployment.
-<br />
-<b>
-Tech Stack
-</b>
-<br />
-Python, OpenCV, face_recognition, InsightFace
-Flask, FAISS, NumPy, Pandas
-<br />
-<p className="text-2xl font-bold">
+      {/* Contact */}
+      <FadeSection className="w-full flex flex-col items-center">
+        <p className="mt-8 mb-4 text-2xl sm:text-3xl font-semibold" id="contactus">
+          CONTACT US
+        </p>
+        <p className="w-full sm:w-[80%] text-[16px] text-center px-4 mb-4">
+          I&apos;m always excited to connect with fellow AI enthusiasts, collaborate on innovative
+          projects, or discuss the latest trends in technology. Feel free to reach out!
+        </p>
+        <Input
+          className="w-[90%] sm:w-[80%] mt-2 mb-4"
+          placeholder="Your email address"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <Textarea
+          className="w-[90%] sm:w-[80%] h-40 mb-6"
+          placeholder="Your message"
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+        />
+        <Button className="mb-16 px-8" onClick={sendMessage} disabled={loading}>
+          {loading ? "Sending..." : done ? "✓ Sent!" : "Send Message"}
+        </Button>
+      </FadeSection>
 
-</p>
-<div className="flex gap-8 m-9">
-  
-<Image
-src="/605210024_1289445506557047_5503121573023226745_n.jpg"
-width={200}
-height={200}
-className="rounded-2xl"
-alt="Image"
-/>
-<Image
-src="/606305704_1289445049890426_8809910366120216634_n.jpg"
-width={200}
-height={200}
-className="rounded-2xl"
-alt="Image"
-/>
-</div>
-<br />
-<br />
-<a className='text-2xl font-bold' href="">
-Berta Language Machine Translation</a>
-<br />
-<a href="https://en.wikipedia.org/wiki/Berta_languages">See on Wikipedia</a><br />
-<Image 
-src="/photo_2026-01-23_02-11-59.jpg"
-alt="img"
-width={600}
-height={300}
-/>
-This project focuses on building a low-resource machine translation system that translates between Berta (Bertha) and English. The goal is to contribute to the digitization and preservation of Ethiopian indigenous languages using modern Natural Language Processing (NLP) techniques.
-  <br />
-{/* <p className='font-bold text-xl'> */}
-Data Collection & Preparation
-{/* </p> */}
-<br />
-Collected, cleaned, and aligned 6,000+ parallel Berta–English sentence pairs.
-
-Performed normalization, tokenization, and preprocessing to ensure high-quality training data.
-
-Addressed challenges of low-resource languages such as limited corpora, irregular spellings, and morphological variation.
-
-<p className='font-bold text-xl'>
-  <br />
-Model Architecture
-</p>
-<br />
-Built a Seq2Seq (Sequence-to-Sequence) neural architecture with:
-
-Custom Encoder–Decoder structure
-
-Attention mechanism for improved contextual alignment
-
-Experimented with multiple architectures and finalized a Transformer-based model optimized for low-resource scenarios.
-
-Achieved meaningful translation results despite the low-resource environment, demonstrating feasibility for underrepresented languages.
-Trained the model using PyTorch and Hugging Face Transformers.
-<p className='font-bold text-xl'>
-  <br />
-Deployment</p>
-<br />
-
-The model is published and open-source on Hugging Face:
-
-<br />
-<b>Model Repository: </b>
-<a href='https://huggingface.co/Mikile/Bertha-translation-encoder'>https://huggingface.co/Mikile/Bertha-translation-encoder</a>
-<br />
-This allows researchers, linguists, and developers to use or fine-tune the model for further work in Berta NLP.
-
-Goal & Impact
-
-This project’s mission is to:
-
-Preserve and promote Berta language through modern machine learning
-
-Provide a starting point for future Ethiopian indigenous language NLP research
-
-Support tools like translation systems, chatbots, digital dictionaries, and educational apps
-
-Reduce the technological gap for underrepresented languages
-<br />
-<a className='text-2xl font-bold' href="">
-Heart Disease Detection System
-</a>
-<br />
-
-An AI-powered machine learning project designed to predict the risk of heart disease using patient medical data.
-
-Key Features
-
-Predicts heart disease likelihood based on clinical attributes
-
-Includes data cleaning, feature selection, and model training
-
-Supports early diagnosis and healthcare decision-making
-<br />
-Technologies Used
-<br />
-Python
-
-Machine Learning (Scikit-learn)
-
-Pandas, NumPy
-
-Matplotlib / Seaborn
-<br />
-<a className='text-2xl font-bold' href="">
-Carbon Emission Car Prediction System
-</a>
-<br />
-
-A machine learning-based system that predicts carbon dioxide (CO₂) emissions of cars using vehicle specifications.
-
-<br />
-Key Features
-
-<br />
-Predicts carbon emissions based on engine size, fuel type, and mileage
-
-Uses regression models for accurate emission estimation
-
-Promotes environmental awareness and eco-friendly vehicle choices
-<br />
-Technologies Used
-<br />
-
-Python
-
-Machine Learning (Regression Models)
-
-Pandas, NumPy
-
-Data Visualization
-<br />
-<a className='text-2xl font-bold' href="">
-AI Recommendation System
-</a>
-<br />
-Implemented both content-based and collaborative filtering methods.
-
-Designed systems to deliver personalized recommendations using machine learning techniques.
-<br />
-
-<a className='text-2xl font-bold' href="">
-LangChain-Based Chat Assistant
-</a>
-<br />
-Built an intelligent chatbot powered by LangChain and LLMs.
-
-Integrated custom knowledge-retrieval pipelines for more accurate and context-aware responses.</p>
-<p className='m-9 text-6xl'>SKILLS</p>
-<div className='flex flex-row gap-8 mb-20'>
-
-<Image 
-src='https://img.icons8.com/color/48/python--v1.png'
-width={50}
-height={50}
-alt="img"
-/>
-<Image 
-src='https://img.icons8.com/fluency/48/pytorch.png'
-width={50}
-height={50}
-alt="img"
-/>
-<Image 
-src='https://img.icons8.com/fluency/48/hugging-face_app.png'
-width={50}
-height={50}
-alt="img"
-/>
-<Image 
-src='https://img.icons8.com/color/48/nextjs.png'
-width={50}
-height={50}
-alt="img"
-/>
-<Image 
-src='/images (1).png'
-width={50}
-height={50}
-alt="img"
-/>
-<Image 
-src='https://img.icons8.com/color/48/pandas.png'
-width={50}
-height={50}
-alt="img"
-/>
-</div>
-<div className="flex flex-row gap-8 mb-20">
-<Image 
-src='/images.webp'
-width={50}
-height={50}
-alt="img"
-/>
-<Image 
-src='/images (1).webp'
-width={50}
-height={50}
-alt="img"
-/>
-<Image 
-src='https://img.icons8.com/fluency/48/r-project.png'
-width={50}
-height={50}
-alt="img"
-/>
-
-</div>
-<p className='m-9 text-3xl' id="certifications">CERTIFICATIONS</p>
-<div className='flejpg'>
-  <Image 
-src='/Group.png'
-width={300}
-height={300}
-alt="img"
-/>
-</div>
-<p className='m-9 text-3xl' id='contactus'>CONTACT US</p>
-<p className='w-[80%] text-[18px]'>I’m always excited to connect with fellow AI enthusiasts, collaborate on innovative projects, or discuss the latest trends in technology. Whether you have a question, an idea, or just want to say hello, feel free to reach out!</p>
-    <Input className="w-[80%] mt-5 mb-6" placeholder="Your email address"        value={email}
-        onChange={(e) => setEmail(e.target.value)}/>
-    <Textarea className="w-[80%] h-40 mb-20" placeholder="Your message"        value={message}
-        onChange={(e) => setMessage(e.target.value)}/>
-    <Button className="mb-20" onClick={sendMessage} disabled={loading}>
-      {loading ? "Sending..." : done ? "Sent!" : "Send Message"}
-    </Button>
-{/* <p>A collection of certifications from Udemy, Kaggle, and Hugging Face covering Machine Learning, Python development, TensorFlow, NLP, LLMs, and AI engineering. These courses strengthened my practical skills in building real-world AI applications.</p> */}
-    <div className="bg-black[200] b-0">©2026 Mikiyas Zenebe</div>
+      <div className="w-full text-center py-4 text-sm text-muted-foreground border-t border-border">
+        ©2026 Mikiyas Zenebe
+      </div>
     </main>
   );
 }
-
