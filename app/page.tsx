@@ -70,7 +70,7 @@ export default function Home() {
       <a href="https://www.linkedin.com/in/mikile">
       <Linkedin/>
       </a>
-      <a href="https://github.com/Mikilezen">
+      <a href="https://github.com/mikilezen">
       <Github/>
       </a>
       <a href="https://t.me/m_i_k_i_l_e">
