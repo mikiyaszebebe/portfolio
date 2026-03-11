@@ -360,12 +360,24 @@ alt="img"
 
 </div>
 <p className='m-9 text-3xl' id="certifications">CERTIFICATIONS</p>
-<div className='flejpg'>
+<div className='flex flex-wrap gap-8 justify-center mb-8'>
   <Image 
 src='/Group.png'
 width={300}
 height={300}
-alt="img"
+alt="Certifications - Mikiyas Zenebe"
+/>
+  <Image 
+src='https://github.com/user-attachments/assets/c45a8ac9-ae3e-4a5f-abd9-c8e1e954d30b'
+width={400}
+height={300}
+alt="Hult Prize CampusPlus Winner Certificate - Mikiyas Zenebe"
+/>
+  <Image 
+src='https://github.com/user-attachments/assets/eb04c331-c867-4a81-a9a9-97f52e1f896c'
+width={400}
+height={300}
+alt="ICPC 2025 Ethiopian Collegiate Programming Contest Honorable Mention - Mikiyas Zenebe"
 />
 </div>
 <p className='m-9 text-3xl' id='contactus'>CONTACT US</p>
