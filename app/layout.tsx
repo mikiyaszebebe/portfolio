@@ -1,24 +1,13 @@
 import type { Metadata } from "next";
 
-// Copy
 import { ThemeProvider } from "@/components/theme-provider"
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 export const metadata: Metadata = {
-  title: "Mikiyas Zenebe | AI Engineer & Python Developer",
+  title: "Mikiyas Zenebe | AI Engineer & Founder",
   description:
-    "Explore Mikiyas Zenebe's professional portfolio showcasing web apps, AI projects, and software development expertise. Specializing in Next.js, Python, and innovative tech solutions for your next project.",
+    "Dark portfolio for Mikiyas Zenebe, AI engineer and founder building AI systems, LLM products, computer vision, and low-resource NLP.",
+  metadataBase: new URL("https://mikile.tech"),
   keywords: [
     "Mikiyas Zenebe",
     "AI Engineer",
@@ -43,29 +32,29 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: "https://mikile.tech",
-    title: "Mikiyas Zenebe | AI Engineer & Python Developer",
+    title: "Mikiyas Zenebe | AI Engineer & Founder",
     description:
-      "Explore Mikiyas Zenebe's professional portfolio showcasing web apps, AI projects, and software development expertise. Specializing in Next.js, Python, and innovative tech solutions for your next project.",
+      "Dark portfolio for Mikiyas Zenebe, AI engineer and founder building AI systems, LLM products, computer vision, and low-resource NLP.",
     siteName: "Mikiyas Zenebe Portfolio",
     images: [
       {
-        url: "/mikiyas (1).jpg",
+        url: "/Screenshot 2026-01-23 020926.png",
         width: 1200,
         height: 630,
-        alt: "Mikiyas Zenebe Portfolio",
+        alt: "Mikiyas Zenebe portfolio preview",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Mikiyas Zenebe | AI Engineer & Python Developer",
+    title: "Mikiyas Zenebe | AI Engineer & Founder",
     description:
-      "Explore Mikiyas Zenebe's professional portfolio showcasing web apps, AI projects, and software development expertise. Specializing in Next.js, Python, and innovative tech solutions for your next project.",
-    images: ["/mikiyas (1).jpg"],
+      "Dark portfolio for Mikiyas Zenebe, AI engineer and founder building AI systems, LLM products, computer vision, and low-resource NLP.",
+    images: ["/Screenshot 2026-01-23 020926.png"],
   },
   icons: {
-    icon: "/mikiyas (1).jpg",
-    shortcut: "/mikiyas (1).jpg",
+    icon: "/Screenshot 2026-01-23 020926.png",
+    shortcut: "/Screenshot 2026-01-23 020926.png",
   },
   alternates: {
     canonical: "https://mikile.tech",
@@ -79,17 +68,15 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-            <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            {children}
-          </ThemeProvider>
+      <body className="bg-[#0d0d0f] text-[#f4f1e8] antialiased">
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem={false}
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
         {/* {children} */}
       </body>
     </html>

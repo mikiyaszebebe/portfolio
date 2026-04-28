@@ -1,23 +1,29 @@
-import React from 'react'
 import Image from "next/image";
-export default function header() {
+
+export default function Header() {
   return (
-    <main className='flex flex-col items-center justify-between bg-secondary  w-full h-20 top-0 left-0 fixed  back'>
-      <Image
-        src="/unnamed (1).jpg"
-        alt="Logo"
-        width={30}
-        height={30}
-        className="rounded-full fixed top-6 left-2"
-      />
-      <p className='fixed top-6 left-16'>mikile.tech</p>
-      <div className='flex flex-row gap-4 fixed top-6 right-18'>
-        <a href="#about" className='text-gray-700 hover:text-blue-500'>About</a>
-        <a href="#projects" className='text-gray-700 hover:text-blue-500'>Projects</a>
-        <a href="#contact" className='text-gray-700 hover:text-blue-500'>Contact</a>
-        <a href="#certifications" className='text-gray-700 hover:text-blue-500'>Certifications</a>
-        <a href="#experience" className='text-gray-700 hover:text-blue-500'>Experience</a>
+    <header className="sticky top-0 z-40 border-b border-[#242429] bg-[#0d0d0f]/90 backdrop-blur-xl">
+      <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-5 py-4 lg:px-8">
+        <a href="#hero" className="flex items-center gap-3">
+          <Image
+            src="/unnamed (1).jpg"
+            alt="Mikiyas Zenebe"
+            width={34}
+            height={34}
+            className="rounded-full border border-[#242429]"
+          />
+          <div>
+            <p className="text-[10px] uppercase tracking-[0.35em] text-[#8e8b82]">mikile.tech</p>
+            <p className="font-serif text-base text-[#f4f1e8]">Mikiyas Zenebe</p>
+          </div>
+        </a>
+
+        <nav className="flex flex-wrap items-center justify-end gap-2 text-sm text-[#b7b2a6]">
+          <a className="rounded-full px-3 py-2 transition hover:bg-[#141417] hover:text-[#f4f1e8]" href="#projects">Projects</a>
+          <a className="rounded-full px-3 py-2 transition hover:bg-[#141417] hover:text-[#f4f1e8]" href="#experience">Experience</a>
+          <a className="rounded-full px-3 py-2 transition hover:bg-[#141417] hover:text-[#f4f1e8]" href="#contact">Contact</a>
+        </nav>
       </div>
-    </main>
+    </header>
   )
 }
