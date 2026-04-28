@@ -28,7 +28,7 @@ const projects: Project[] = [
     tech: ["Python", "OpenCV", "InsightFace", "FAISS", "Flask"],
     impact: "Turns CCTV streams into actionable identity, access, and safety signals.",
     image: "/Screenshot 2026-01-23 020926.png",
-    visit: "https://github.com/mikilezen/AILVision",
+    visit: "https://github.com/mavaai/AILVision",
   },
   {
     name: "Megent SDK",
@@ -38,7 +38,7 @@ const projects: Project[] = [
     tech: ["SDK Design", "Agent Security", "Policy Checks", "Python"],
     impact: "Positions Megent as infrastructure for trustworthy agent workflows.",
     image: "/Frame.jpg",
-    visit: "https://github.com/mikilezen",
+    visit: "https://github.com/megents/megent",
   },
   {
     name: "repIt",
