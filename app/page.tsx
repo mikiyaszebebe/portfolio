@@ -161,7 +161,7 @@ export default function Home() {
       <section id="hero" className="mx-auto max-w-7xl px-10 py-20 lg:px-8 lg:pyd-28">
         <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
           <div className="space-y-6">
-            <p className="text-[10px] uppercase tracking-[0.5em] text-[#8e8b82]">AI Engineer • Founder • Builder</p>
+            <p className="text-[10px] uppercase tracking-[0.1em] text-[#8e8b82]">AI Engineer</p>
             <h1 className="max-w-3xl font-serif text-5xl leading-[1.05] tracking-[-0.04em] text-[#f4f1e8] sm:text-6xl lg:text-7xl">
               Mikiyas Zenebe
             </h1>
