@@ -13,7 +13,7 @@ export default function Header() {
             className="rounded-full border border-[#242429]"
           />
           <div>
-            <p className="text-[10px] uppercase tracking-[0.35em] text-[#8e8b82]">mikile.tech</p>
+            {/* <p className="text-[10px] uppercase tracking-[0.35em] text-[#8e8b82]">mikile.tech</p> */}
             <p className="font-serif text-base text-[#f4f1e8]">Mikiyas Zenebe</p>
           </div>
         </a>
