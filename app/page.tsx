@@ -332,7 +332,7 @@ export default function Home() {
               </a>
             </div>
           </div>
-        </div>
+        </div><p className="text-[10px] uppercase tracking-[0.35em] text-[#8e8b82]">Email: mikilezen@gmail.com</p>
       </section>
     </main>
   );
