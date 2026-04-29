@@ -158,7 +158,7 @@ export default function Home() {
     <main className="min-h-screen bg-[#0d0d0f] text-[#f4f1e8]">
       <Header />
 
-      <section id="hero" className="mx-auto max-w-7xl px-10 py-0 lg:px-8 lg:pyd-28">
+      <section id="hero" className="mx-auto max-w-7xl px-10 py-2 lg:px-8 lg:pyd-28">
         <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
           <div className="space-y-6">
             <p className="text-[18px] uppercase tracking-[0.1em] text-[#8e8b82]">AI Engineer</p>
