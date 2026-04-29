@@ -112,15 +112,15 @@ const projects: Project[] = [
 const skillGroups = [
   {
     title: "AI Systems",
-    items: ["LLM products", "RAG", "Agent workflows", "Prompt design"],
+    items: ["LLM products", "RAG", "Agent workflows", "AI safety", "Model fine-tuning"],
   },
   {
     title: "Computer Vision",
-    items: ["OpenCV", "Face recognition", "Detection", "Video intelligence"],
+    items: ["OpenCV", "CNN", "Detection", "Video intelligence"],
   },
   {
     title: "Product Web",
-    items: ["Next.js", "React", "TypeScript", "Design systems"],
+    items: ["Next.js", "React", "Design systems"],
   },
   {
     title: "Infrastructure",
