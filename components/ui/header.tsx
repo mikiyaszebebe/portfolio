@@ -20,7 +20,7 @@ export default function Header() {
 
         <nav className="flex flex-wrap items-center justify-end gap-2 text-sm text-[#b7b2a6]">
           <a className="rounded-full px-3 py-2 transition hover:bg-[#141417] hover:text-[#f4f1e8]" href="#projects">Projects</a>
-          <a className="rounded-full px-3 py-2 transition hover:bg-[#141417] hover:text-[#f4f1e8]" href="#experience">Experience</a>
+          {/* <a className="rounded-full px-3 py-2 transition hover:bg-[#141417] hover:text-[#f4f1e8]" href="#experience">Experience</a> */}
           <a className="rounded-full px-3 py-2 transition hover:bg-[#141417] hover:text-[#f4f1e8]" href="#contact">Contact</a>
         </nav>
       </div>
