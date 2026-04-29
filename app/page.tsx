@@ -68,7 +68,7 @@ const projects: Project[] = [
     tech: ["Next.js", "React", "TypeScript", "UI Systems"],
     impact: "Creates a product surface for community-led growth.",
     image: "/image.png",
-    visit: "https://github.com/mikilezen",
+    visit: "https://github.com/mikilezen/Mahber",
   },
   {
     name: "LLM Chat Assistant",
@@ -78,7 +78,7 @@ const projects: Project[] = [
     tech: ["LangChain", "RAG", "LLMs", "Python"],
     impact: "Moves LLM use from novelty to product utility.",
     image: "/Rectangle.jpg",
-    visit: "https://github.com/mikilezen",
+    visit: "https://github.com/mikilezen/Langchain-chat",
   },
   {
     name: "Heart Disease Detection System",
