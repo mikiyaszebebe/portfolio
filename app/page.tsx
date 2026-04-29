@@ -189,7 +189,7 @@ export default function Home() {
               <a className="text-[#b7b2a6] underline decoration-[#3a3a3f] underline-offset-4" href="#contact">
                 Contact
               </a>
-              <a className="text-[#b7b2a6] underline decoration-[#3a3a3f] underline-offset-4" href="call:+251985641212">
+              <a className="text-[#b7b2a6] underline decoration-[#3a3a3f] underline-offset-4" href="tel:+251985641212">
                 Call
               </a>
             </div>
