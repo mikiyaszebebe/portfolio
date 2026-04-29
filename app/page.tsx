@@ -124,7 +124,7 @@ const skillGroups = [
   },
   {
     title: "Infrastructure",
-    items: ["Python", "APIs", "Automation", "Deployment"],
+    items: ["Python", "APIs", "Flutter", "Deployment"],
   },
 ];
 
