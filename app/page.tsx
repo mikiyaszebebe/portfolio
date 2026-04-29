@@ -189,9 +189,6 @@ export default function Home() {
               <a className="text-[#b7b2a6] underline decoration-[#3a3a3f] underline-offset-4" href="#contact">
                 Contact
               </a>
-              <a className="text-[#b7b2a6] underline decoration-[#3a3a3f] underline-offset-4" href="tel:+251985641212">
-                Call
-              </a>
             </div>
 
           </div>
@@ -328,6 +325,10 @@ export default function Home() {
               </button>
               <a href="mailto:mikilezen@gmail.com" className="text-sm text-[#b7b2a6] underline decoration-[#3a3a3f] underline-offset-4">
                 Email directly
+              </a>
+              
+              <a className="text-[#b7b2a6] underline decoration-[#3a3a3f] underline-offset-4" href="tel:+251985641212">
+                Call
               </a>
             </div>
           </div>
