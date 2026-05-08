@@ -6,7 +6,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Mikiyas Zenebe | AI Engineer & Founder",
   description:
-    "Dark portfolio for Mikiyas Zenebe, AI engineer and founder building AI systems, LLM products, computer vision, and low-resource NLP.",
+    "Portfolio of Mikiyas Zenebe, AI engineer and founder building AI systems, LLM products, computer vision, and low-resource NLP.",
   metadataBase: new URL("https://mikile.tech"),
   keywords: [
     "Mikiyas Zenebe",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     url: "https://mikile.tech",
     title: "Mikiyas Zenebe | AI Engineer & Founder",
     description:
-      "Dark portfolio for Mikiyas Zenebe, AI engineer and founder building AI systems, LLM products, computer vision, and low-resource NLP.",
+      "Portfolio of Mikiyas Zenebe, AI engineer and founder building AI systems, LLM products, computer vision, and low-resource NLP.",
     siteName: "Mikiyas Zenebe Portfolio",
     images: [
       {
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Mikiyas Zenebe | AI Engineer & Founder",
     description:
-      "Dark portfolio for Mikiyas Zenebe, AI engineer and founder building AI systems, LLM products, computer vision, and low-resource NLP.",
+      "Portfolio of Mikiyas Zenebe, AI engineer and founder building AI systems, LLM products, computer vision, and low-resource NLP.",
     images: ["/Screenshot 2026-01-23 020926.png"],
   },
   icons: {
