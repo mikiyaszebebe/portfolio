@@ -90,16 +90,8 @@ export default function AwardPage() {
                     rel="noreferrer"
                     className="inline-flex items-center gap-2 rounded-full border border-[#2a2a2d] bg-[#0d0d0f] px-4 py-2 text-sm text-[#f4f1e8] transition hover:border-[#d27a57]"
                   >
-                    Check
+                    Check certificate
                     <ArrowUpRight className="h-4 w-4" />
-                  </a>
-                  <a
-                    href={certificate.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center gap-2 text-sm text-[#b7b2a6] underline decoration-[#3a3a3f] underline-offset-4 hover:text-[#f4f1e8]"
-                  >
-                    Open link
                   </a>
                 </div>
               </div>
