@@ -6,8 +6,8 @@ import Header from "@/components/ui/header";
 const certificates = [
   {
     id: "KAGGLE-INTERMEDIATE-ML-2025",
-    image: "https://github.com/user-attachments/assets/ef25ec9a-db51-4c80-a242-8e10f1cb2099",
-    url: "https://github.com/user-attachments/assets/ef25ec9a-db51-4c80-a242-8e10f1cb2099",
+    image: "/Mikiyas Zenebe - Intermediate Machine Learning.png",
+    url: "/Mikiyas Zenebe - Intermediate Machine Learning.png",
     issuer: "Kaggle",
     award: "Intermediate Machine Learning",
     credential: "Issued on October 27, 2025",
