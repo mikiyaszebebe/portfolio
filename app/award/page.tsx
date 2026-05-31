@@ -55,7 +55,7 @@ export default function AwardPage() {
         <div className="mb-10 max-w-3xl space-y-4">
           <p className="text-[10px] uppercase tracking-[0.5em] text-[#8e8b82]">Awards</p>
           <h1 className="font-serif text-4xl tracking-[-0.03em] text-[#f4f1e8] sm:text-5xl">
-            Certificates & awards
+            Certificates & Awards
           </h1>
           <p className="text-base leading-7 text-[#b7b2a6]">
             Verified Udemy certificates showcasing continuous learning in AI systems, web development, and product execution.
