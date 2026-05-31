@@ -5,6 +5,14 @@ import Header from "@/components/ui/header";
 
 const certificates = [
   {
+    id: "KAGGLE-INTERMEDIATE-ML-2025",
+    image: "https://github.com/user-attachments/assets/ef25ec9a-db51-4c80-a242-8e10f1cb2099",
+    url: "https://github.com/user-attachments/assets/ef25ec9a-db51-4c80-a242-8e10f1cb2099",
+    issuer: "Kaggle",
+    award: "Intermediate Machine Learning",
+    credential: "Issued on October 27, 2025",
+  },
+  {
     id: "UC-95d00db8-abd7-4fc2-b01c-b40d9de3efb3",
     image: "https://github.com/user-attachments/assets/f73705a9-18f1-4c88-a1dd-3d4febf01855",
     url: "https://www.udemy.com/certificate/UC-95d00db8-abd7-4fc2-b01c-b40d9de3efb3/",
@@ -71,7 +79,7 @@ export default function AwardPage() {
               <div className="relative aspect-[4/3] w-full overflow-hidden border-b border-[#242429]">
                 <Image
                   src={certificate.image}
-                  alt={`Udemy certificate ${certificate.id}`}
+                  alt={`${certificate.issuer ?? "Udemy"} award ${certificate.award ?? certificate.id}`}
                   width={1200}
                   height={900}
                   className="h-full w-full object-cover"
@@ -79,9 +87,9 @@ export default function AwardPage() {
               </div>
               <div className="flex flex-1 flex-col gap-5 p-6">
                 <div className="space-y-3">
-                  <p className="text-[10px] uppercase tracking-[0.35em] text-[#8e8b82]">Udemy</p>
-                  <h2 className="font-serif text-2xl text-[#f4f1e8]">Certificate of Completion</h2>
-                  <p className="text-sm text-[#b7b2a6]">Credential ID: {certificate.id}</p>
+                  <p className="text-[10px] uppercase tracking-[0.35em] text-[#8e8b82]">{certificate.issuer ?? "Udemy"}</p>
+                  <h2 className="font-serif text-2xl text-[#f4f1e8]">{certificate.award ?? "Certificate of Completion"}</h2>
+                  <p className="text-sm text-[#b7b2a6]">{certificate.credential ?? `Credential ID: ${certificate.id}`}</p>
                 </div>
                 <div className="mt-auto flex flex-wrap gap-3">
                   <a
@@ -90,7 +98,7 @@ export default function AwardPage() {
                     rel="noreferrer"
                     className="inline-flex items-center gap-2 rounded-full border border-[#2a2a2d] bg-[#0d0d0f] px-4 py-2 text-sm text-[#f4f1e8] transition hover:border-[#d27a57]"
                   >
-                    Check certificate
+                    View award
                     <ArrowUpRight className="h-4 w-4" />
                   </a>
                 </div>
