@@ -3,7 +3,28 @@ import { ArrowUpRight } from "lucide-react";
 
 import Header from "@/components/ui/header";
 
-const certificates = [
+type AwardItem = {
+  id: string;
+  image: string;
+  url: string;
+  issuer?: string;
+  title?: string;
+  description?: string;
+  actionLabel?: string;
+  alt?: string;
+};
+
+const certificates: AwardItem[] = [
+  {
+    id: "HULT-PRIZE-ETHIOPIA-2026-ARSI-UNIVERSITY",
+    image: "https://github.com/user-attachments/assets/07499d2b-623b-4020-b007-3d45a852c2c4",
+    url: "https://github.com/user-attachments/assets/07499d2b-623b-4020-b007-3d45a852c2c4",
+    issuer: "Hult Prize Ethiopia 2026",
+    title: "Arsi University Award",
+    description: "Recognition for the AFRIHAKIM startup team at Arsi University.",
+    actionLabel: "View award",
+    alt: "Hult Prize Ethiopia 2026 Arsi University award poster",
+  },
   {
     id: "UC-95d00db8-abd7-4fc2-b01c-b40d9de3efb3",
     image: "https://github.com/user-attachments/assets/f73705a9-18f1-4c88-a1dd-3d4febf01855",
@@ -71,7 +92,7 @@ export default function AwardPage() {
               <div className="relative aspect-[4/3] w-full overflow-hidden border-b border-[#242429]">
                 <Image
                   src={certificate.image}
-                  alt={`Udemy certificate ${certificate.id}`}
+                  alt={certificate.alt ?? `Award certificate ${certificate.id}`}
                   width={1200}
                   height={900}
                   className="h-full w-full object-cover"
@@ -79,9 +100,9 @@ export default function AwardPage() {
               </div>
               <div className="flex flex-1 flex-col gap-5 p-6">
                 <div className="space-y-3">
-                  <p className="text-[10px] uppercase tracking-[0.35em] text-[#8e8b82]">Udemy</p>
-                  <h2 className="font-serif text-2xl text-[#f4f1e8]">Certificate of Completion</h2>
-                  <p className="text-sm text-[#b7b2a6]">Credential ID: {certificate.id}</p>
+                  <p className="text-[10px] uppercase tracking-[0.35em] text-[#8e8b82]">{certificate.issuer ?? "Udemy"}</p>
+                  <h2 className="font-serif text-2xl text-[#f4f1e8]">{certificate.title ?? "Certificate of Completion"}</h2>
+                  <p className="text-sm text-[#b7b2a6]">{certificate.description ?? `Credential ID: ${certificate.id}`}</p>
                 </div>
                 <div className="mt-auto flex flex-wrap gap-3">
                   <a
@@ -90,7 +111,7 @@ export default function AwardPage() {
                     rel="noreferrer"
                     className="inline-flex items-center gap-2 rounded-full border border-[#2a2a2d] bg-[#0d0d0f] px-4 py-2 text-sm text-[#f4f1e8] transition hover:border-[#d27a57]"
                   >
-                    Check certificate
+                    {certificate.actionLabel ?? "Check certificate"}
                     <ArrowUpRight className="h-4 w-4" />
                   </a>
                 </div>
