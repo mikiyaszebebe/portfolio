@@ -17,6 +17,18 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'github.com',
+        port: '',
+        pathname: '/user-attachments/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'udemy-certificate.s3.amazonaws.com',
+        port: '',
+        pathname: '/image/**',
+      },
     ],
   },
 // ],
