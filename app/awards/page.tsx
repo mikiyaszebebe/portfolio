@@ -5,6 +5,14 @@ import Header from "@/components/ui/header";
 
 const certificates = [
   {
+    id: "CODE-CREATE-INNOVATE-2026",
+    image: "https://github.com/user-attachments/assets/8498456c-b8b6-4af0-8824-d47f36637c0b",
+    url: "https://github.com/user-attachments/assets/1d6bde00-9ee3-4f67-89ce-a3e948e69584",
+    issuer: "Code Create Innovate",
+    award: "Code Create Innovate Award",
+    credential: "2026 Recognition",
+  },
+  {
     id: "KAGGLE-INTERMEDIATE-ML-2025",
     image: "/Mikiyas Zenebe - Intermediate Machine Learning.png",
     url: "https://www.kaggle.com/learn/certification/mikiys/intermediate-machine-learning",
