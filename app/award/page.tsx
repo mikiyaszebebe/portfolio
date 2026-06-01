@@ -7,7 +7,7 @@ const certificates = [
   {
     id: "KAGGLE-INTERMEDIATE-ML-2025",
     image: "/Mikiyas Zenebe - Intermediate Machine Learning.png",
-    url: "https://www.kaggle.com/learn/certification/mikiys/intermediate-machine-learning"
+    url: "https://www.kaggle.com/learn/certification/mikiys/intermediate-machine-learning",
     // url: "/Mikiyas Zenebe - Intermediate Machine Learning.png",
     issuer: "Kaggle",
     award: "Intermediate Machine Learning",
