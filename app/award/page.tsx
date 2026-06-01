@@ -14,6 +14,14 @@ const certificates = [
     credential: "Issued on October 27, 2025",
   },
   {
+    id: "HULT-PRIZE-ARSI-UNIVERSITY-2026",
+    image: "https://github.com/user-attachments/assets/e32559e2-2e69-4bc2-950d-f31007e6554f",
+    url: "https://afrihakim.com",
+    issuer: "Hult Prize Ethiopia 2026",
+    award: "Arsi University On-Campus Winner",
+    credential: "Startup: AfriHakim",
+  },
+  {
     id: "UC-95d00db8-abd7-4fc2-b01c-b40d9de3efb3",
     image: "https://github.com/user-attachments/assets/f73705a9-18f1-4c88-a1dd-3d4febf01855",
     url: "https://www.udemy.com/certificate/UC-95d00db8-abd7-4fc2-b01c-b40d9de3efb3/",
