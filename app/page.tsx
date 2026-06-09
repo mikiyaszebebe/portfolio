@@ -68,7 +68,7 @@ const projects: Project[] = [
     tech: ["Next.js", "React", "TypeScript", "UI Systems"],
     impact: "Creates a product surface for community-led growth.",
     image: "/image.png",
-    visit: "https://github.com/mikilezen/Mahber",
+    visit: "https://Mahber.social",
   },
   {
     name: "LLM Chat Assistant",
