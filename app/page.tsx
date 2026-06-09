@@ -96,7 +96,7 @@ const projects: Project[] = [
     solution: "Built a regression-based system that predicts CO2 emissions from vehicle attributes.",
     tech: ["Python", "Regression Models", "Pandas", "NumPy", "Data Visualization"],
     impact: "",
-    visit: "https://github.com/mikilezen/CO2-Emission",
+    visit: "https://github.com/mikilezen/CO2-Emission-",
   },
   {
     name: "AI Recommendation System",
