@@ -1,0 +1,14 @@
+test_roc_auc:
+  prompt: "Run the project's held-out evaluation and report the test ROC-AUC for the selected RBF SVC. Compare it with 0.846 in livepaper/paper.md."
+test_pr_auc:
+  prompt: "Run the project's held-out evaluation and report the test PR-AUC for the selected RBF SVC. Compare it with 0.667 in livepaper/paper.md."
+brier_score:
+  prompt: "Run the calibration evaluation on the held-out test set and report the Brier score. Compare it with 0.137 in livepaper/paper.md."
+dataset_rows:
+  prompt: "Run the data preparation step and report the number of retained IBM Telco Customer Churn rows. Compare it with 7043 in livepaper/paper.md."
+feature_count:
+  prompt: "Inspect the production feature metadata or training output and report the number of model features. Compare it with 32 in livepaper/paper.md."
+split:
+  prompt: "Inspect the training configuration and report the train/test split used for the Telco benchmark. Compare it with 80/20 stratified holdout in livepaper/paper.md."
+random_seed:
+  prompt: "Inspect the training configuration and report the random seed used for reproducibility. Compare it with 42 in livepaper/paper.md."

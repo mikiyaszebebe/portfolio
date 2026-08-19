@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TCCP: Trustworthy Customer Churn Prediction</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/styles/github.min.css">
+  <style>
+    :root {
+      --repl-underline: #15803d;
+      --repl-hover-bg: #f0fdf4;
+      --pending-underline: #c2410c;
+      --popover-bg: #fff;
+      --popover-border: #d1d5db;
+      --popover-shadow: 0 4px 24px rgba(0,0,0,0.12);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      max-width: 48rem;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+      line-height: 1.7;
+      color: #1a1a1a;
+    }
+
+    h1, h2, h3, h4 { font-family: system-ui, -apple-system, sans-serif; margin-top: 2rem; }
+    h1 { font-size: 1.8rem; line-height: 1.3; }
+    h2 { font-size: 1.4rem; border-bottom: 1px solid #e5e7eb; padding-bottom: 0.3rem; }
+    h3 { font-size: 1.15rem; }
+
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 0.92rem; }
+    th, td { border: 1px solid #d1d5db; padding: 0.4rem 0.7rem; text-align: left; }
+    th { background: #f9fafb; font-family: system-ui, sans-serif; font-weight: 600; }
+
+    img { max-width: 100%; height: auto; margin: 1rem 0; border-radius: 4px; }
+
+    pre { background: #f8f9fa; padding: 1rem; border-radius: 6px; overflow-x: auto; }
+    code { font-size: 0.88em; }
+
+    /* Verified replicable values — green highlight */
+    .replicable {
+      color: inherit;
+      text-decoration: none;
+      background: #dcfce7;
+      border-radius: 3px;
+      padding: 0 2px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .replicable:hover, .replicable:focus {
+      background: #bbf7d0;
+    }
+    .replicable.active {
+      background: #bbf7d0;
+    }
+
+    /* Pending values — red/brown highlight */
+    .replicable.pending {
+      color: inherit;
+      text-decoration: none;
+      background: #fee2e2;
+      cursor: default;
+    }
+    .replicable.pending:hover {
+      background: #fee2e2;
+    }
+
+    /* Hide highlights mode */
+    .hide-highlights .replicable {
+      background: transparent;
+      cursor: default;
+    }
+    .hide-highlights .replicable.pending {
+      background: transparent;
+    }
+
+    /* Popover */
+    .repl-popover {
+      position: absolute;
+      z-index: 1000;
+      background: var(--popover-bg);
+      border: 1px solid var(--popover-border);
+      border-radius: 8px;
+      box-shadow: var(--popover-shadow);
+      padding: 1rem;
+      max-width: 32rem;
+      width: max-content;
+      font-family: system-ui, sans-serif;
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+    .repl-popover-id {
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 0.78rem;
+      color: #6b7280;
+      margin-bottom: 0.5rem;
+    }
+    .repl-popover-prompt {
+      background: #f3f4f6;
+      border-radius: 6px;
+      padding: 0.75rem;
+      font-size: 0.84rem;
+      white-space: pre-wrap;
+      word-break: break-word;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      margin-bottom: 0.5rem;
+      max-height: 12rem;
+      overflow-y: auto;
+    }
+    .repl-popover-note {
+      color: #6b7280;
+      font-size: 0.82rem;
+      margin-bottom: 0.75rem;
+    }
+    .repl-popover-copy {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.35rem 0.75rem;
+      border: 1px solid #86efac;
+      border-radius: 6px;
+      background: #f0fdf4;
+      color: #166534;
+      font-size: 0.82rem;
+      cursor: pointer;
+      font-family: system-ui, sans-serif;
+      transition: background 0.15s;
+    }
+    .repl-popover-copy:hover { background: #dcfce7; }
+    .repl-popover-copy.copied { background: #d1fae5; border-color: #6ee7b7; color: #059669; }
+    .repl-popover-toggle {
+      padding: 0.35rem 0.75rem;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      background: #f9fafb;
+      color: #6b7280;
+      font-size: 0.82rem;
+      cursor: pointer;
+      font-family: system-ui, sans-serif;
+      transition: background 0.15s;
+    }
+    .repl-popover-toggle:hover { background: #f3f4f6; }
+
+    /* Setup banner */
+    .repl-banner {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 2rem;
+      font-family: system-ui, sans-serif;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+    .repl-banner strong { color: #166534; }
+    .repl-banner-dismiss {
+      float: right;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #9ca3af;
+      font-size: 1.2rem;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="repl-banner" id="repl-banner">
+    <button class="repl-banner-dismiss" onclick="this.parentElement.remove()">&times;</button>
+    <strong>This paper has replicable values (<span id="repl-counts"></span>).</strong> <span style="color:#15803d;">Click any highlighted number to replicate.</span>
+    <details id="repl-setup-block" style="display:none; margin-top: 0.5rem;">
+      <summary style="cursor: pointer; color: #166534; font-size: 0.88rem;">Want to replicate? Get started here.</summary>
+      <div style="margin-top: 0.5rem; font-size: 0.88rem;">
+        Open an AI coding agent in your terminal and copy paste the instructions below.
+        <div style="position: relative; margin-top: 0.5rem;">
+          <pre id="repl-setup-prompt" style="background: #fff; border: 1px solid #bbf7d0; border-radius: 6px; padding: 0.75rem; padding-right: 3rem; font-size: 0.84rem; white-space: pre-wrap; word-break: break-word; margin: 0;"></pre>
+          <button onclick="navigator.clipboard.writeText(document.getElementById('repl-setup-prompt').textContent).then(()=>{this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',2000)})" style="position: absolute; top: 0.5rem; right: 0.5rem; padding: 0.25rem 0.5rem; border: 1px solid #86efac; border-radius: 4px; background: #f0fdf4; color: #166534; font-size: 0.78rem; cursor: pointer;">Copy</button>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <article id="paper-content">
+    <h1 id="tccp%3A-trustworthy-customer-churn-prediction" tabindex="-1">TCCP: Trustworthy Customer Churn Prediction</h1>
+<h2 id="from-customer-data-to-governed-retention-action" tabindex="-1">From customer data to governed retention action</h2>
+<p><strong>Group 15 · Mikiyas Zenebe, Selemun Abrha, Yafet Mulaw, Haile Sintayehu, Fisehatsion Adisu, Tedros Nigus</strong></p>
+<p>TCCP is an end-to-end system that turns the IBM Telco Customer Churn dataset into calibrated customer-risk estimates, interpretable drivers, and a ranked retention action list. It cleans the source data, compares five classifiers, selects an RBF support-vector classifier using validation PR-AUC, evaluates discrimination and calibration on a held-out test set, and converts risk into expected net value under a contact budget.</p>
+<h2 id="key-result" tabindex="-1">Key result</h2>
+<p>The reported champion achieved <span class="replicable" data-spec-id="test_roc_auc" tabindex="0" role="button">ROC-AUC 0.846</span>, <span class="replicable" data-spec-id="test_pr_auc" tabindex="0" role="button">PR-AUC 0.667</span>, and <span class="replicable" data-spec-id="brier_score" tabindex="0" role="button">Brier score 0.137</span> on the held-out test set.</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th style="text-align:right">Validation PR-AUC</th>
+<th style="text-align:right">Test ROC-AUC</th>
+<th style="text-align:right">Test PR-AUC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SVC (RBF)</td>
+<td style="text-align:right">0.670 ± 0.019</td>
+<td style="text-align:right">0.846 ± 0.011</td>
+<td style="text-align:right">0.667 ± 0.025</td>
+</tr>
+<tr>
+<td>Logistic regression</td>
+<td style="text-align:right">0.670 ± 0.016</td>
+<td style="text-align:right">0.848 ± 0.011</td>
+<td style="text-align:right">0.665 ± 0.025</td>
+</tr>
+<tr>
+<td>Neural network (MLP)</td>
+<td style="text-align:right">0.668 ± 0.016</td>
+<td style="text-align:right">0.846 ± 0.011</td>
+<td style="text-align:right">0.653 ± 0.026</td>
+</tr>
+<tr>
+<td>XGBoost</td>
+<td style="text-align:right">0.666 ± 0.021</td>
+<td style="text-align:right">0.844 ± 0.011</td>
+<td style="text-align:right">0.657 ± 0.025</td>
+</tr>
+<tr>
+<td>Random forest</td>
+<td style="text-align:right">0.665 ± 0.020</td>
+<td style="text-align:right">0.845 ± 0.011</td>
+<td style="text-align:right">0.655 ± 0.026</td>
+</tr>
+</tbody>
+</table>
+<h2 id="problem-and-policy" tabindex="-1">Problem and policy</h2>
+<p>For a customer with feature vector <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span>, the system estimates <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>P</mi><mo stretchy="false">(</mo><mi>Y</mi><mo>=</mo><mn>1</mn><mo>∣</mo><mi>X</mi><mo>=</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">p(x)=P(Y=1\mid X=x)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.2222em;">Y</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∣</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0785em;">X</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">x</span><span class="mclose">)</span></span></span></span>. It then ranks customers using expected intervention value:</p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>U</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>p</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mi>r</mi><mi>v</mi><mo>−</mo><mi>c</mi></mrow><annotation encoding="application/x-tex">U(x)=p(x)rv-c
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.109em;">U</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mord mathnormal" style="margin-right:0.0278em;">r</span><span class="mord mathnormal" style="margin-right:0.0359em;">v</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">c</span></span></span></span></span></p>
+<p>where <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi></mrow><annotation encoding="application/x-tex">r</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">r</span></span></span></span> is the assumed save rate, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>v</mi></mrow><annotation encoding="application/x-tex">v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">v</span></span></span></span> is customer value, and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">c</span></span></span></span> is contact cost. Under a finite budget, customers are selected from the highest-ranked risk until the contact limit is reached. Prediction quality determines ranking; business assumptions determine action.</p>
+<p>The demonstration uses <span class="replicable" data-spec-id="dataset_rows" tabindex="0" role="button">7,043 customers</span>, a <span class="replicable" data-spec-id="feature_count" tabindex="0" role="button">32-column feature contract</span>, an <span class="replicable" data-spec-id="split" tabindex="0" role="button">80/20 stratified holdout</span>, and random seed <span class="replicable" data-spec-id="random_seed" tabindex="0" role="button">42</span>. The champion is calibrated with five-fold sigmoid calibration inside the training partition.</p>
+<h2 id="explainability-and-governance" tabindex="-1">Explainability and governance</h2>
+<p>SHAP values describe how the fitted model moves an individual prediction relative to a background sample. Partial dependence summarizes average model response. Neither establishes causality. Prominent displayed drivers include Contract, tenure, Fiber_x_Charge, electronic-check payments, and InternetService_Fiber.</p>
+<p>The production path stores preprocessing and estimator together, records model metadata, supports batch and FastAPI scoring, and should monitor calibration drift, input-schema errors, score distributions, intervention outcomes, and post-deployment performance.</p>
+<h2 id="limitations" tabindex="-1">Limitations</h2>
+<p>The data is historical and does not establish future performance or causal treatment effects. A random holdout does not replace a time-based holdout when deployment dates are known. Retention value depends on assumed save rate, customer value, and contact cost. The next release should add time-based validation, cohort calibration, randomized retention experiments, and a promotion gate for data quality and fairness.</p>
+
+  </article>
+
+  <script type="application/json" id="replication-specs">
+    {
+  "meta": {
+    "generated_at": "2026-08-19T10:10:10.237Z",
+    "total": 7,
+    "setup": "Help me navigate this replicable livepaper. Clone https://github.com/mikiyaszebebe/portfolio.git and cd into it.\n"
+  },
+  "specs": {
+    "test_roc_auc": {
+      "prompt": "Run the project's held-out evaluation and report the test ROC-AUC for the selected RBF SVC. Compare it with 0.846 in livepaper/paper.md."
+    },
+    "test_pr_auc": {
+      "prompt": "Run the project's held-out evaluation and report the test PR-AUC for the selected RBF SVC. Compare it with 0.667 in livepaper/paper.md."
+    },
+    "brier_score": {
+      "prompt": "Run the calibration evaluation on the held-out test set and report the Brier score. Compare it with 0.137 in livepaper/paper.md."
+    },
+    "dataset_rows": {
+      "prompt": "Run the data preparation step and report the number of retained IBM Telco Customer Churn rows. Compare it with 7043 in livepaper/paper.md."
+    },
+    "feature_count": {
+      "prompt": "Inspect the production feature metadata or training output and report the number of model features. Compare it with 32 in livepaper/paper.md."
+    },
+    "split": {
+      "prompt": "Inspect the training configuration and report the train/test split used for the Telco benchmark. Compare it with 80/20 stratified holdout in livepaper/paper.md."
+    },
+    "random_seed": {
+      "prompt": "Inspect the training configuration and report the random seed used for reproducibility. Compare it with 42 in livepaper/paper.md."
+    }
+  }
+}
+  </script>
+
+  <script>
+  (function() {
+    const specsData = JSON.parse(document.getElementById('replication-specs').textContent);
+    const specs = specsData.specs;
+
+    // Setup banner
+    if (specsData.meta.setup) {
+      const block = document.getElementById('repl-setup-block');
+      const prompt = document.getElementById('repl-setup-prompt');
+      block.style.display = 'block';
+      prompt.textContent = specsData.meta.setup;
+    }
+
+    // Counts in banner
+    const verified = Object.keys(specs).length;
+    const pendingCount = document.querySelectorAll('.replicable.pending').length;
+    const totalValues = verified + pendingCount;
+    const countsEl = document.getElementById('repl-counts');
+    if (countsEl) countsEl.textContent = `${verified}/${totalValues}`;
+
+    // Popover state
+    let activePopover = null;
+    let activeTarget = null;
+
+    function removePopover() {
+      if (activePopover) {
+        activePopover.remove();
+        activePopover = null;
+      }
+      if (activeTarget) {
+        activeTarget.classList.remove('active');
+        activeTarget = null;
+      }
+    }
+
+    function showPopover(el) {
+      removePopover();
+
+      const id = el.dataset.specId;
+      const spec = specs[id];
+      if (!spec) return;
+
+      el.classList.add('active');
+      activeTarget = el;
+
+      const pop = document.createElement('div');
+      pop.className = 'repl-popover';
+
+      let html = `<div class="repl-popover-id">${id}</div>`;
+      html += `<div class="repl-popover-prompt">${escapeHtml(spec.prompt)}</div>`;
+      if (spec.note) {
+        html += `<div class="repl-popover-note">${escapeHtml(spec.note)}</div>`;
+      }
+      html += `<div style="display:flex; gap:0.5rem; align-items:center;">`;
+      html += `<button class="repl-popover-copy" data-prompt="${escapeAttr(spec.prompt)}">&#x1f4cb; Copy prompt</button>`;
+      html += `<button class="repl-popover-toggle" onclick="document.body.classList.toggle('hide-highlights')">&#x1f4a1; Toggle highlights</button>`;
+      html += `</div>`;
+
+      pop.innerHTML = html;
+      document.body.appendChild(pop);
+      activePopover = pop;
+
+      // Position
+      const rect = el.getBoundingClientRect();
+      const popRect = pop.getBoundingClientRect();
+      let top = rect.bottom + window.scrollY + 8;
+      let left = rect.left + window.scrollX;
+
+      // Keep within viewport
+      if (left + popRect.width > window.innerWidth - 16) {
+        left = window.innerWidth - popRect.width - 16;
+      }
+      if (left < 16) left = 16;
+
+      pop.style.top = top + 'px';
+      pop.style.left = left + 'px';
+
+      // Copy handler
+      pop.querySelector('.repl-popover-copy').addEventListener('click', async function(e) {
+        e.stopPropagation();
+        const prompt = this.dataset.prompt;
+        try {
+          await navigator.clipboard.writeText(prompt);
+          this.innerHTML = '&#x2713; Copied!';
+          this.classList.add('copied');
+          setTimeout(() => {
+            this.innerHTML = '&#x1f4cb; Copy prompt';
+            this.classList.remove('copied');
+          }, 2000);
+        } catch {
+          // Fallback
+          const ta = document.createElement('textarea');
+          ta.value = prompt;
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          ta.remove();
+          this.innerHTML = '&#x2713; Copied!';
+          this.classList.add('copied');
+        }
+      });
+    }
+
+    // Click handler
+    document.addEventListener('click', function(e) {
+      const el = e.target.closest('.replicable:not(.pending)');
+      if (el) {
+        e.preventDefault();
+        if (activeTarget === el) {
+          removePopover();
+        } else {
+          showPopover(el);
+        }
+        return;
+      }
+      if (activePopover && !activePopover.contains(e.target)) {
+        removePopover();
+      }
+    });
+
+    // Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') removePopover();
+    });
+
+    // Deep link
+    if (window.location.hash) {
+      const id = window.location.hash.slice(1);
+      const el = document.querySelector(`[data-spec-id="${id}"]`);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        setTimeout(() => showPopover(el), 500);
+      }
+    }
+
+    function escapeHtml(s) {
+      return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
+    function escapeAttr(s) {
+      return s.replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
+  })();
+  </script>
+</body>
+</html>
