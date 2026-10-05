@@ -61,14 +61,14 @@ const projects: Project[] = [
     visit: "https://huggingface.co/Mikile/Bertha-translation-encoder",
   },
   {
-    name: "Mahber.social",
+    name: "TCCP",
     category: "Community Platform",
     problem: "Community products need structure, identity, and flow, not just posts.",
     solution: "Built a platform for community connection and organized digital interaction.",
     tech: ["Next.js", "React", "TypeScript", "UI Systems"],
     impact: "Creates a product surface for community-led growth.",
     image: "/image.png",
-    visit: "https://Mahber.social",
+    visit: "https://github.com/mikilezen/tccp",
   },// },
   // {
   //   name: "LLM Chat Assistant",
