@@ -7,7 +7,7 @@ export default function Header() {
       <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-5 py-4 lg:px-8">
         <Link href="/#hero" className="flex items-center gap-3">
           <Image
-            src="/mikiyas-logo.jpg"
+            src="/unnamed (1).jpg"
             alt="Mikiyas Zenebe"
             width={34}
             height={34}

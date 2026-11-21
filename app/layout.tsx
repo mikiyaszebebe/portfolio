@@ -4,14 +4,12 @@ import { ThemeProvider } from "@/components/theme-provider"
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Mikiyas Zenebe | Agentic AI Engineer",
+  title: "Mikiyas Zenebe | AI Engineer & Founder",
   description:
-    "Portfolio of Mikiyas Zenebe, an agentic AI engineer building AI systems, LLM products, computer vision, and low-resource NLP.",
+    "Portfolio of Mikiyas Zenebe, AI engineer and founder building AI systems, LLM products, computer vision, and low-resource NLP.",
   metadataBase: new URL("https://mikile.tech"),
   keywords: [
     "Mikiyas Zenebe",
-    "Agentic AI",
-    "AI Agents",
     "AI Engineer",
     "Python Developer",
     "Machine Learning",
@@ -34,9 +32,9 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: "https://mikile.tech",
-    title: "Mikiyas Zenebe | Agentic AI Engineer",
+    title: "Mikiyas Zenebe | AI Engineer & Founder",
     description:
-      "Portfolio of Mikiyas Zenebe, an agentic AI engineer building AI systems, LLM products, computer vision, and low-resource NLP.",
+      "Portfolio of Mikiyas Zenebe, AI engineer and founder building AI systems, LLM products, computer vision, and low-resource NLP.",
     siteName: "Mikiyas Zenebe Portfolio",
     images: [
       {
@@ -49,15 +47,14 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Mikiyas Zenebe | Agentic AI Engineer",
+    title: "Mikiyas Zenebe | AI Engineer & Founder",
     description:
-      "Portfolio of Mikiyas Zenebe, an agentic AI engineer building AI systems, LLM products, computer vision, and low-resource NLP.",
+      "Portfolio of Mikiyas Zenebe, AI engineer and founder building AI systems, LLM products, computer vision, and low-resource NLP.",
     images: ["/Screenshot 2026-01-23 020926.png"],
   },
   icons: {
-    icon: "/mikiyas-logo.jpg",
-    shortcut: "/mikiyas-logo.jpg",
-    apple: "/mikiyas-logo.jpg",
+    icon: "/Screenshot 2026-01-23 020926.png",
+    shortcut: "/Screenshot 2026-01-23 020926.png",
   },
   alternates: {
     canonical: "https://mikile.tech",
