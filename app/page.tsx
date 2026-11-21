@@ -59,7 +59,7 @@ const projects: Project[] = [
     name: "repIt",
     category: "AI Classroom Representative Agent",
     description: "Built an AI classroom representative agent to organize messages, reminders, and coordination.",
-    tech: ["Agentic AI", "Python", "Automation", "Workflow Design"],
+    tech: ["Agentic", "Python", "Automation", "Workflow Design"],
     image: "/3_objects.png",
     visit: "https://github.com/megents/repit",
   },
@@ -170,7 +170,7 @@ export default function Home() {
       <section id="hero" className="mx-auto max-w-7xl px-10 py-2 lg:px-8 lg:pyd-28">
         <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
           <div className="space-y-6">
-            <p className="text-[18px] uppercase tracking-[0.1em] text-[#8e8b82]">AI Engineer | AI Agents &amp; Intelligent Systems</p>
+            <p className="text-[18px] uppercase tracking-[0.1em] text-[#8e8b82]">Agentic AI Engineer | Intelligent Systems</p>
             <h1 className="max-w-3xl font-serif text-5xl leading-[1.05] tracking-[-0.04em] text-[#f4f1e8] sm:text-6xl lg:text-7xl">
               Mikiyas Zenebe
             </h1>
@@ -292,7 +292,7 @@ export default function Home() {
             <p className="text-[10px] uppercase tracking-[0.35em] text-[#8e8b82]">Contact</p>
             <h2 className="mt-3 font-serif text-3xl tracking-[-0.03em] text-[#f4f1e8]">Build something serious.</h2>
             <p className="mt-4 max-w-2xl text-sm leading-7 text-[#b7b2a6]">
-              Reach out for AI products, infrastructure work, or founder-level execution.
+              Reach out for AI products and intelligent systems work.
             </p>
           </div>
 
