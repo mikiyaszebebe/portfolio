@@ -11,64 +11,71 @@ import { Textarea } from "../components/ui/textarea";
 type Project = {
   name: string;
   category: string;
-  problem: string;
-  solution: string;
+  description: string;
   tech: string[];
-  impact: string;
   image?: string;
   visit: string;
+  links?: { label: string; url: string }[];
 };
 
 const projects: Project[] = [
   {
     name: "AILVision",
     category: "AI Classroom",
-    problem: "Classrooms need a clearer way to understand attendance, engagement, and student wellbeing.",
-    solution: "Built a real-time camera-based system that helps monitor attendance, attention, and visible emotional cues during class.",
+    description: "Built a real-time camera-based system for monitoring attendance, attention, and visible emotional cues during class.",
     tech: ["Python", "OpenCV", "InsightFace", "FAISS", "Flask"],
-    impact: "Turns classroom camera feeds into insights about attendance, attention, and student engagement.",
     image: "/Screenshot 2026-01-23 020926.png",
     visit: "https://github.com/mikilezen/AILVision",
   },
   {
     name: "Saba",
     category: "Self-Hosted AI Assistant",
-    problem: "AI workflows are often scattered across chat apps, file tools, and disconnected services.",
-    solution: "Built Saba as a self-hosted AI assistant for chatting with models, working with files, using approved tools, remembering useful context, and connecting chat channels.",
+    description: "Built a private, self-hosted AI assistant for chat, files, tools, memory, and connected workflows.",
     tech: ["AI Assistants", "Self-Hosted", "File Workflows", "Tool Integration"],
-    impact: "Gives users one private, customizable place to run AI workflows on their computer or server.",
     image: "/Group.png",
     visit: "https://github.com/mikilezen/saba",
   },// },
   {
     name: "Megent",
     category: "AI Agent Fiewall",
-    problem: "AI agents need a safety and policy layer before they can operate in real systems.",
-    solution: "Shaped an SDK concept for securing agent behavior, decisions, and execution boundaries.",
+    description: "Shaped an SDK concept for securing AI agent behavior, decisions, and execution boundaries.",
     tech: ["SDK Design", "Agent Security", "Policy Checks", "Python"],
-    impact: "Positions Megent as infrastructure for trustworthy agent workflows.",
     image: "/Frame.jpg",
     visit: "https://github.com/megents/megent",
   },
   {
     name: "repIt",
     category: "AI Classroom Representative Agent",
-    problem: "Classroom coordination still depends on manual updates and scattered communication.",
-    solution: "Built repIt as an AI classroom representative agent to organize messages, reminders, and coordination.",
+    description: "Built an AI classroom representative agent to organize messages, reminders, and coordination.",
     tech: ["Agentic AI", "Python", "Automation", "Workflow Design"],
-    impact: "Gives classroom communication a reliable agent layer.",
     image: "/3_objects.png",
     visit: "https://github.com/megents/repit",
   },
   {
     name: "Berta Translation Model",
     category: "Low-Resource NLP",
-    problem: "Berta-English translation has limited high-quality machine learning support.",
-    solution: "Trained a low-resource translation pipeline for Berta language preservation and access.",
+    description: "Trained a low-resource Berta-English translation pipeline for language preservation and access.",
     tech: ["PyTorch", "Transformers", "NLP", "Hugging Face"],
-    impact: "Supports indigenous-language digitization and future NLP tooling.",
     image: "/photo_2026-01-23_02-11-59.jpg",
     visit: "https://huggingface.co/Mikile/Bertha-translation-encoder",
+  },
+  {
+    name: "TCCP",
+    category: "Trustworthy Customer Churn Prediction",
+    description: "An end-to-end machine-learning system that predicts customer churn, calibrates risk probabilities, explains model outputs, and prioritizes retention actions by business value.",
+    tech: ["Python", "Scikit-learn", "FastAPI", "Machine Learning"],
+    visit: "https://github.com/mikilezen/TCCP",
+  },
+  {
+    name: "AgentCourt",
+    category: "AI Agent Security · Web3 · SDK Engineering",
+    description: "Infrastructure for governing AI agent actions through policy enforcement, on-chain identity, reputation, and transaction controls.",
+    tech: ["TypeScript", "Solidity", "Next.js", "Supabase", "Web3"],
+    visit: "https://github.com/mikilezen/agentcourt-sdk",
+    links: [
+      { label: "AgentCourt SDK", url: "https://github.com/mikilezen/agentcourt-sdk" },
+      { label: "AgentCourt Arc", url: "https://github.com/mikilezen/Agentcourt-Arc" },
+    ],
   },
   // {
   //   name: "LLM Chat Assistant",
@@ -161,12 +168,12 @@ export default function Home() {
       <section id="hero" className="mx-auto max-w-7xl px-10 py-2 lg:px-8 lg:pyd-28">
         <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
           <div className="space-y-6">
-            <p className="text-[18px] uppercase tracking-[0.1em] text-[#8e8b82]">AI Engineer</p>
+            <p className="text-[18px] uppercase tracking-[0.1em] text-[#8e8b82]">AI Engineer | AI Agents &amp; Intelligent Systems</p>
             <h1 className="max-w-3xl font-serif text-5xl leading-[1.05] tracking-[-0.04em] text-[#f4f1e8] sm:text-6xl lg:text-7xl">
               Mikiyas Zenebe
             </h1>
             <p className="max-w-2xl text-lg leading-8 text-[#b7b2a6] sm:text-xl">
-              Building infrastructure for AI systems and real-world intelligence. Focused on products that ship.
+              I build AI agents and intelligent software that can reason, use tools, interact with systems, and solve real-world tasks. I enjoy working across agent architectures, model integrations, automation, and the infrastructure that makes AI products work.
             </p>
 
             <div className="flex flex-wrap gap-4 text-sm text-[#b7b2a6]">
@@ -234,13 +241,7 @@ export default function Home() {
                 <p className="text-[10px] uppercase tracking-[0.35em] text-[#8e8b82]">{project.category}</p>
                 <h3 className="font-serif text-2xl leading-tight text-[#f4f1e8]">{project.name}</h3>
                 <div className="space-y-2 text-sm leading-7 text-[#c8c3b7]">
-                  {project.image ? (
-                    <p><span className="text-[#f4f1e8]">Problem:</span> {project.problem}</p>
-                  ) : null}
-                  <p><span className="text-[#f4f1e8]">Solution:</span> {project.solution}</p>
-                  {project.image ? (
-                    <p><span className="text-[#f4f1e8]">Impact:</span> {project.impact}</p>
-                  ) : null}
+                  <p>{project.description}</p>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {project.tech.map((item) => (
@@ -254,9 +255,17 @@ export default function Home() {
                     Visit
                     <ArrowUpRight className="h-4 w-4" />
                   </a>
-                  <a href={project.visit} target="_blank" rel="noreferrer" className="text-[#b7b2a6] underline decoration-[#3a3a3f] underline-offset-4">
-                    Real source
-                  </a>
+                  {project.links?.map((link) => (
+                    <a
+                      key={link.label}
+                      href={link.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-[#b7b2a6] underline decoration-[#3a3a3f] underline-offset-4"
+                    >
+                      {link.label}
+                    </a>
+                  ))}
                 </div>
               </div>
             </article>
