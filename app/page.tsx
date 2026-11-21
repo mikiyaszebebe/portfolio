@@ -20,21 +20,13 @@ type Project = {
 
 const projects: Project[] = [
   {
-    name: "AILVision",
-    category: "AI Classroom",
-    description: "Built a real-time camera-based system for monitoring attendance, attention, and visible emotional cues during class.",
-    tech: ["Python", "OpenCV", "InsightFace", "FAISS", "Flask"],
-    image: "/Screenshot 2026-01-23 020926.png",
-    visit: "https://github.com/mikilezen/AILVision",
-  },
-  {
     name: "Saba",
     category: "Self-Hosted AI Assistant",
     description: "Built a private, self-hosted AI assistant for chat, files, tools, memory, and connected workflows.",
     tech: ["AI Assistants", "Self-Hosted", "File Workflows", "Tool Integration"],
     image: "/Group.png",
     visit: "https://github.com/mikilezen/saba",
-  },// },
+  },
   {
     name: "Megent",
     category: "AI Agent Fiewall",
@@ -42,14 +34,6 @@ const projects: Project[] = [
     tech: ["SDK Design", "Agent Security", "Policy Checks", "Python"],
     image: "/Frame.jpg",
     visit: "https://github.com/megents/megent",
-  },
-  {
-    name: "repIt",
-    category: "AI Classroom Representative Agent",
-    description: "Built an AI classroom representative agent to organize messages, reminders, and coordination.",
-    tech: ["Agentic AI", "Python", "Automation", "Workflow Design"],
-    image: "/3_objects.png",
-    visit: "https://github.com/megents/repit",
   },
   {
     name: "Berta Translation Model",
@@ -60,22 +44,40 @@ const projects: Project[] = [
     visit: "https://huggingface.co/Mikile/Bertha-translation-encoder",
   },
   {
-    name: "TCCP",
-    category: "Trustworthy Customer Churn Prediction",
-    description: "An end-to-end machine-learning system that predicts customer churn, calibrates risk probabilities, explains model outputs, and prioritizes retention actions by business value.",
-    tech: ["Python", "Scikit-learn", "FastAPI", "Machine Learning"],
-    visit: "https://github.com/mikilezen/TCCP",
-  },
-  {
     name: "AgentCourt",
     category: "AI Agent Security · Web3 · SDK Engineering",
     description: "Infrastructure for governing AI agent actions through policy enforcement, on-chain identity, reputation, and transaction controls.",
     tech: ["TypeScript", "Solidity", "Next.js", "Supabase", "Web3"],
+    image: "/agentcourt-preview.png",
     visit: "https://github.com/mikilezen/agentcourt-sdk",
     links: [
       { label: "AgentCourt SDK", url: "https://github.com/mikilezen/agentcourt-sdk" },
       { label: "AgentCourt Arc", url: "https://github.com/mikilezen/Agentcourt-Arc" },
     ],
+  },
+  {
+    name: "repIt",
+    category: "AI Classroom Representative Agent",
+    description: "Built an AI classroom representative agent to organize messages, reminders, and coordination.",
+    tech: ["Agentic AI", "Python", "Automation", "Workflow Design"],
+    image: "/3_objects.png",
+    visit: "https://github.com/megents/repit",
+  },
+  {
+    name: "AILVision",
+    category: "AI Classroom",
+    description: "Built a real-time camera-based system for monitoring attendance, attention, and visible emotional cues during class.",
+    tech: ["Python", "OpenCV", "InsightFace", "FAISS", "Flask"],
+    image: "/Screenshot 2026-01-23 020926.png",
+    visit: "https://github.com/mikilezen/AILVision",
+  },
+  {
+    name: "TCCP",
+    category: "Trustworthy Customer Churn Prediction",
+    description: "An end-to-end machine-learning system that predicts customer churn, calibrates risk probabilities, explains model outputs, and prioritizes retention actions by business value.",
+    tech: ["Python", "Scikit-learn", "FastAPI", "Machine Learning"],
+    image: "/tccp-preview.png",
+    visit: "https://github.com/mikilezen/TCCP",
   },
   // {
   //   name: "LLM Chat Assistant",
